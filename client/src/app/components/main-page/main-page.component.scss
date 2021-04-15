@@ -1,0 +1,78 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    height: auto;
+    background-image: linear-gradient(rgba(162, 213, 255, 0.212), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(162, 213, 255, 0.212));
+}
+
+.header-item {
+    justify-content: center;
+    text-align: center;
+    width: 35%;
+    margin: 0;
+    margin-top: 3%;
+    padding: 0;
+}
+
+button {
+    margin-top: 10px;
+    width: 360px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 30px;
+    border: 1px solid #00aff0;
+    
+    img {
+        float: left;
+        margin-top: 5px;
+        width: 10%;
+    }
+    p {
+        margin: 0;
+        display: inline;
+    }
+}
+
+::ng-deep .new-button:hover, .carousel-button:hover {
+    background-color: #3F51B5;
+    border: 0px;
+    color: white;
+}
+
+.continue-button {
+    border: 1px solid #cc1c1c;
+    color: black;
+}
+
+::ng-deep .continue-button:hover {
+    background-color: #cc1c1c;
+    color: white;
+}
+
+a {
+    justify-content: center;
+    text-align: center;
+}
+
+.footer-item {
+    text-align: center;
+}
+
+.team-name {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    font-size: 24px;
+}
+
+a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #3F51B5;
+}
+
+a:hover {
+    color: #00aff0;
+}

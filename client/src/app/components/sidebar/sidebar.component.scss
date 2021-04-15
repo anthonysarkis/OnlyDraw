@@ -1,0 +1,89 @@
+#logo {
+    width:300px;
+    margin-bottom: 200px;
+    cursor: pointer;
+    outline: none;
+    -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    
+}
+
+.tool-container {
+    height: 88vh;
+    padding: 0 5px 0 5px;
+    margin-bottom: 0;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    width: 90px;
+}
+.tools{
+    height: 70%;
+}
+
+.sidebar-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    button {
+        padding: 2px;
+        margin: 2px;
+        width: 10%;
+        border-radius: 10px;
+        box-shadow: black;
+        img {
+            max-height: 26px;
+        }
+    }
+
+    .active {
+        background-color: #c0cace;
+        border: 0.5px solid rgba(0, 0, 0, 0.219);
+        color: white;
+    }
+}
+
+.undo-redo-container {
+    .undo-button, .redo-button {
+        min-width: 40px;
+        margin: 2px 2px 2px 0;
+        padding: 0;
+    }
+
+    img {
+        max-height: 10px;
+        max-width: 20px;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+div.tools {
+    width: 100%;
+}
+
+::ng-deep .mat-tooltip {
+    background: #0000ff !important;
+    font-size: 14px !important;
+}
+
+::ng-deep .tool-container .mat-raised-button {
+    min-width: 40px !important;
+    padding: 0px !important;
+}
+
+.list {
+    min-width: 30px !important;
+
+}
+
+.home {
+    width: 100% !important;
+}

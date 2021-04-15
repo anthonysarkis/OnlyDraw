@@ -1,0 +1,10 @@
+<div>
+    <h1 mat-dialog-title>Confirmation</h1>
+    <mat-dialog-content class="mat-typography">
+        <p>Vous avez des modifications sur le canvas non enregistrées qui seront perdues si vous décidez de continuer!</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button [mat-dialog-close]="true" color="primary" routerLink="/editor" (click)="onConfirm()">Continuer</button>
+        <button mat-raised-button [mat-dialog-close]="false" cdkFocusInitial color="warn">Annuler</button>
+    </mat-dialog-actions>
+</div>

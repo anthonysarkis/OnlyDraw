@@ -1,0 +1,4 @@
+<div><h2>Mode: {{ this.selectionService.isSelected ? 'Sélection' : 'Dessin'}}</h2>
+<button  *ngIf="this.selectionService.isSelected" color="warn" mat-raised-button color="warn" (click)="onCancelSelection()">Annuler la sélection</button>
+<br>
+<app-magnetism></app-magnetism>

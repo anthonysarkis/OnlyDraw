@@ -1,0 +1,13 @@
+<div class="text-box" [hidden]="!this.textService.isTextBoxActive" [style.top.px]="textService.topCorner.y" [style.left.px]="textService.topCorner.x">
+    <textarea
+        wrap="off"
+        spellcheck="false"
+        type="text"
+        [style.color]="this.textService.getTextColor()"
+        [style.border]="'none'"
+        #textBox
+        class="textBox"
+        (input)="this.textService.resizeTextBox();"
+        [ngStyle]="this.textService.currentStyle"
+    ></textarea>
+</div>

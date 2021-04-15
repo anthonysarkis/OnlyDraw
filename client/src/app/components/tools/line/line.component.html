@@ -1,0 +1,35 @@
+<div>
+    <mat-label>Épaisseur de la ligne</mat-label>
+    <mat-slider 
+        [max]="maxLineThickness" 
+        [min]="minLineThickness"
+        [value]="lineThickness"
+        [disabled]="this.lineService.pathData.length!==0"
+        (input)="lineThickness=$event.value"
+        (change)="onLineThicknessChange($event.value)">
+    </mat-slider>
+    <span>{{ lineThickness }} px</span>
+
+    <div>
+        <mat-label>Points de jonction</mat-label>
+        <br>
+        <mat-slide-toggle 
+            [(ngModel)]="showJunctionPoints"
+            [disabled]="this.lineService.pathData.length!==0"
+            (change)="onShowJunctionPointsChange($event.checked)">
+        </mat-slide-toggle>
+    </div>
+
+    <div>
+        <mat-label>Diamètre du point</mat-label>
+        <mat-slider 
+            [max]="maxPointDiameter" 
+            [min]="minPointDiameter"
+            [value]="pointDiameter"
+            (input)="pointDiameter=$event.value"
+            [disabled]="!showJunctionPoints || this.lineService.pathData.length!==0"
+            (change)="onPointDiameterChange($event.value)">
+        </mat-slider>
+        <span>{{ pointDiameter }} px</span>
+    </div>
+</div>

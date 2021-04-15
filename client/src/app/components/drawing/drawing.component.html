@@ -1,0 +1,7 @@
+<div [style.cursor]="isCursorNone ? 'none' : 'crosshair'" id="canvas-container">
+    <canvas id="canvas" #baseCanvas [attr.width]="width" [attr.height]="height"></canvas>
+    <canvas id="previewLayer" #previewCanvas [attr.width]="width" [attr.height]="height"></canvas>
+    <canvas id="gridLayer" #gridCanvas [attr.width]="width" [attr.height]="height"></canvas>
+    <app-selection id="selection"></app-selection>
+    <app-textbox></app-textbox>
+</div>

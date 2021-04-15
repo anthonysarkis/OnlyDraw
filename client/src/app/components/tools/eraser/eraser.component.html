@@ -1,0 +1,8 @@
+<p>Épaisseur de l'efface</p>
+<mat-slider [max]="maxEraserThickness" 
+            [min]="minEraserThickness" 
+            [value]="eraserThickness" 
+            (input)="eraserThickness=$event.value"
+            (change)="onThicknessChange($event.value)">
+</mat-slider>
+<span>{{ eraserThickness }} px</span>

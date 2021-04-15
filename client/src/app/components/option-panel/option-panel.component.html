@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-content class="mat-h2">
+        <p>{{ currentTool.name }}</p>
+        <img [src]="'../../../assets/' + (currentTool.name | lowercase) + '.svg'" />
+    </mat-card-content>
+</mat-card>
+<br>
+<div class="option-panel" id="option-panel">
+    <app-color-picker></app-color-picker>
+    
+    <app-rectangle              *ngIf="currentTool.name === 'Rectangle'"></app-rectangle>
+    <app-line                   *ngIf="currentTool.name === 'Ligne'"></app-line>
+    <app-ellipse                *ngIf="currentTool.name === 'Ellipse'"></app-ellipse>
+    <app-eraser                 *ngIf="currentTool.name === 'Efface'"></app-eraser>
+    <app-pencil                 *ngIf="currentTool.name === 'Crayon'"></app-pencil>
+    <app-aerosol                *ngIf="currentTool.name === 'Aérosol'"></app-aerosol>
+    <app-pipette                *ngIf="currentTool.name === 'Pipette'"></app-pipette>
+    <app-polygon                *ngIf="currentTool.name === 'Polygone'"></app-polygon>
+    <app-selection-rectangle    *ngIf="currentTool.name === 'Rectangle de sélection'"></app-selection-rectangle>
+    <app-selection-ellipse      *ngIf="currentTool.name === 'Ellipse de sélection'"></app-selection-ellipse>
+    <app-stamp                  *ngIf="currentTool.name === 'Étampe'"></app-stamp>
+    <app-text                   *ngIf="currentTool.name === 'Texte'"></app-text>
+    <app-selection-polygon      *ngIf="currentTool.name === 'Lasso polygonal'"></app-selection-polygon>
+    <app-bucket                 *ngIf="currentTool.name === 'Sceau de peinture'"></app-bucket>
+    <app-grid                   *ngIf="currentTool.name === 'Grille'"></app-grid>
+</div>
+
+<div class="clipboard">
+    <app-clipboard></app-clipboard>
+</div>

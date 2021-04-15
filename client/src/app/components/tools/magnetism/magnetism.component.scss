@@ -1,0 +1,86 @@
+.magnetisme-toggle{
+    padding-bottom: 15px;
+}
+
+#grid-image{
+    width: 150px;
+    padding-left: 13px;
+}
+.btn-bot-left{
+  transform: translate(-157px, 1px);
+  -ms-transform: translate(-50%, -50%);
+}
+.btn-bot-middle{
+  transform: translate(78px, -20px);
+  -ms-transform: translate(-50%, -50%);
+}
+.btn-bot-right{
+  transform: translate(128px, -20px);
+  -ms-transform: translate(-50%, -50%);
+}
+.btn-mid-right{
+  transform: translate(66px, -91px);
+  -ms-transform: translate(-50%, -50%);
+}
+.btn-mid-left{
+  transform: translate(-36px, -91px);
+  -ms-transform: translate(-50%, -50%);
+}
+.btn-mid{
+  transform: translate(14px, -91px);
+  -ms-transform: translate(-50%, -50%);
+}
+.btn-top-left{
+  transform: translate(-98px, -163px);
+  -ms-transform: translate(-50%, -50%);
+}
+.btn-top-middle{
+  transform: translate(-48px, -163px);
+  -ms-transform: translate(-50%, -50%);
+}
+.btn-top-right{
+  transform: translate(3px, -163px);
+  -ms-transform: translate(-50%, -50%);
+}
+#magnetism-selected-option{
+  padding-left: 45px;
+}
+
+.container img {
+    width: 200px;
+    height: auto;
+  }
+  
+  .container .btn {
+    background-color: #5053568a;
+    color: #4c4d54;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+.btn-container{
+  position: absolute;
+}
+
+.active {
+  border-radius: 50%;
+  background-color: rgb(56, 56, 218) !important;
+  box-shadow: 0 0 4px 2px #fff, 0 0 10px 5px rgb(55, 89, 163);
+}
+
+mat-slide-toggle {
+  pointer-events: none;
+}
+
+.label {
+  margin-bottom: 10px;
+  vertical-align: middle;
+
+  mat-icon {
+    float: right;
+    margin-right: 10px;
+  }
+}

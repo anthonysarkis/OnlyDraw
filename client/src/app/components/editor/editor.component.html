@@ -1,0 +1,73 @@
+<div class="container mat-app-background" [ngClass]="{'dark-theme-mode' : isDark}">
+  <div class="sidebar">
+    <app-sidebar id="sidebar" (darkModeChanged)="onThemeChange($event)"></app-sidebar>
+    <br>
+    <span class="options" matTooltip="Lecteur de musique" matTooltipPosition="above">
+      <mat-icon>music_note</mat-icon>Musique<mat-slide-toggle [(ngModel)]="isMusicShown"></mat-slide-toggle>
+    </span>
+    <br>
+    <span class="options" matTooltip="Mode nuit" matTooltipPosition="above">
+      <mat-icon>nightlight_round</mat-icon>Nuit<mat-slide-toggle [(ngModel)]="isDark"></mat-slide-toggle>
+    </span>
+  </div>
+
+  <!-- Option Panel -->
+  <app-option-panel id="option-pannel" [ngClass]="isDark ? 'dark-mode' : ''"></app-option-panel>
+
+  <!-- Canvas -->
+  <div class="box">
+    <main>
+      <div class="workspace" #workspace>
+
+        <div class="drawing-container" [style.border-color]="borderColor">
+          <app-drawing
+            appListener
+            class="drawing" 
+            tabindex="0" 
+            [height]="canvasService.canvasDimensions.height"
+            [width]="canvasService.canvasDimensions.width">
+          </app-drawing>
+        </div>
+
+        <div class="resizing-container" 
+          [style.border-color]="borderColor"
+          [style.height.px]="canvasService.previewDimensions.height"
+          [style.width.px]="canvasService.previewDimensions.width" 
+          [ngClass]="{ 'forward': this.selected }">
+          
+          <div class="drag-box mid-right" 
+            cdkDragLockAxis="y" 
+            (cdkDragMoved)="dragMove($event,true,false)"
+            [(cdkDragFreeDragPosition)]="this.canvasService.anchors[5]" 
+            (cdkDragEnded)="dragEnd($event,true,false)"
+            cdkDrag>
+            <div class="interior-drag-box"></div>
+          </div>
+
+          <div class="drag-box bottom-right" 
+            cdkDragLockAxis="x" 
+            (cdkDragMoved)="dragMove($event,false,true)"
+            [(cdkDragFreeDragPosition)]="this.canvasService.anchors[3]" 
+            (cdkDragEnded)="dragEnd($event,false,true)"
+            cdkDrag>
+            <div class="interior-drag-box"></div>
+          </div>
+      
+          <div 
+            class="drag-box bottom-mid" 
+            (cdkDragMoved)="dragMove($event,true,true)"
+            [(cdkDragFreeDragPosition)]="this.canvasService.anchors[4]" 
+            (cdkDragEnded)="dragEnd($event,true,true)"
+            cdkDrag>
+            <div class="interior-drag-box"></div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <div *ngIf="isMusicShown" class="music-dialog">
+      <app-music-dialog></app-music-dialog>
+    </div>
+  </div>
+</div>

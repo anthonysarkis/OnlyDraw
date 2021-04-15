@@ -1,0 +1,16 @@
+canvas {
+    border: 2px solid #000000;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#canvas {
+    background-color: white;
+    z-index: 0;
+}
+
+#gridLayer {
+    z-index: 1000;
+    pointer-events: none;
+}

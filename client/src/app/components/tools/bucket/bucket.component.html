@@ -1,0 +1,9 @@
+
+<mat-label>Tolérance de la couleur</mat-label>
+<mat-slider [max]="maxBucketTolerance" 
+            [min]="minBucketTolerance" 
+            [value]="bucketTolerance" 
+            (input)="bucketTolerance=$event.value"
+            (change)="onToleranceChange($event.value)">
+</mat-slider>
+<span>{{ bucketTolerance }}%</span>

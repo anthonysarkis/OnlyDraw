@@ -1,0 +1,1 @@
+Pour que le folder ne se fasse pas effacer par git

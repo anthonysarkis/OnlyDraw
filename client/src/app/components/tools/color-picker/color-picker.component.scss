@@ -1,0 +1,222 @@
+:host {
+    display: block;
+    padding-bottom: 2%;
+}
+
+.container {
+  position: fixed;
+  left: 300px;
+  top: 15px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 
+    rgba(0, 0, 0, 0.25) 0px 54px 55px, 
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+    rgba(0, 0, 0, 0.12) 0px 4px 6px, 
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  padding: 3px;
+  float: right;
+}
+
+.container:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 20%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-right-color: white;
+	border-left: 0;
+	margin-top: -20px;
+	margin-left: -20px;
+}
+
+.options {
+  padding: 2px;
+}
+
+.champ-de-saisie {
+  font-size: 15px;
+}
+
+.option-title{
+  font-size: 14px;
+}
+.rgb-champ-de-saisie{
+  padding-left: 18px;
+  padding-right: 19px;
+}
+
+.rgb-title {
+  padding-left: 26px;
+  padding-right: 26px;
+}
+
+input[type="text"] {
+  font-size:15px;
+}
+
+.champ-de-saisie-hex{
+  width:18px;
+}
+
+.no-border {
+  border: none;
+}
+
+.color-button{
+  flex: 2;
+  background-color: white;
+  cursor: pointer;
+  padding: 5%;
+  margin: 4%;
+  height: 60px;
+  transition: all .2s ease-in-out
+}
+
+.color-button:active{
+  flex: 2;
+  border: 2px solid black;    
+}
+
+.color-button:hover{
+  transform: scale(1.1)
+}
+
+.primary { 
+  border: 2px solid black;
+  margin: 10px 30px;
+  float: left;
+  position: relative;
+  height: 125px;
+  width: 125px;
+}
+
+.primary:hover { 
+  color:rgb(0, 0, 0)
+}
+
+.secondary { 
+  height: 30px;
+  width: 10px;
+}
+
+.secondary:hover { 
+  color:rgb(0, 0, 0);
+}
+
+.color-title{
+  margin-right: 30px;
+  margin-left: 16px;
+  font-weight: bold;
+}
+
+.color-switch{
+  min-width: 25px;
+  padding :2px;
+}
+
+img {
+  max-width: 25px;
+  margin: 0;
+  padding: 0;
+}
+  
+.color-switch:disabled{
+  opacity: 20%;
+} 
+
+.input-wrapper{
+  width : 15px;
+}
+
+.old-color{
+  width: 2px;
+    height: 22px;
+    margin: 2px;
+    border-radius: 6px;
+}
+
+.confirmation-button {
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 24px;
+  padding: 10px;
+  width: 195px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  transition: all 0.5s;
+  cursor: pointer;
+  animation-name: pulse;
+  animation-duration:1.5s;
+  animation-iteration-count: infinite; 
+}
+
+.cancel-button {
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 175px;
+  height: 50px;
+  padding: 0;
+  margin: 5px 0 0 10px;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  50% { transform: scale(0.94); }
+  to { transform: scale(1); }
+}
+
+.confirmation-button span {
+  display: inline-block;
+  position: relative;
+  transition: 0.2s;
+}
+
+.confirmation-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.confirmation-button:hover span {
+  padding-right: 25px;
+}
+
+.confirmation-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.cancel-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 7px;
+  right: 15px;
+  transition: 0.5s;
+}
+
+.cancel-button:hover span {
+  padding-right: 25px;
+}
+
+.cancel-button:hover span:after {
+  opacity: 1;
+  right: 35px;
+}

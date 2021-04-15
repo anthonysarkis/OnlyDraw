@@ -1,0 +1,16 @@
+<svg width="511.246" height="511.246" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>Layer 1</title>
+  <circle cx="255.623" cy="255.623" fill="#80b9ed" r="239.566" id="svg_1"/>
+  <g fill="#2e58ff" id="svg_4">
+   <path d="m436.336,74.911c-99.874,-99.874 -261.537,-99.888 -361.425,0c-99.874,99.874 -99.888,261.537 0,361.425c99.874,99.874 261.537,99.888 361.425,0c99.874,-99.875 99.887,-261.538 0,-361.425zm-22.628,338.797c-87.369,87.369 -228.789,87.381 -316.17,0c-87.369,-87.369 -87.381,-228.789 0,-316.17c87.369,-87.369 228.789,-87.381 316.17,0c87.369,87.369 87.381,228.789 0,316.17z" id="svg_5"/>
+   <path d="m426.34,190.816c-35.735,-35.733 -93.879,-35.734 -129.614,0l-41.103,41.103l-41.103,-41.103c-35.734,-35.734 -93.879,-35.734 -129.615,0c-57.785,57.785 -16.298,156.416 64.808,156.416c23.47,0 46.939,-8.934 64.807,-26.801l41.103,-41.103l41.103,41.103c17.867,17.867 41.337,26.801 64.807,26.801c81.08,0 122.618,-98.605 64.807,-156.416zm-234.447,106.987c-23.258,23.257 -61.103,23.258 -84.36,0c-23.258,-23.258 -23.258,-61.102 0,-84.36c23.258,-23.257 61.101,-23.258 84.36,0l42.18,42.18l-42.18,42.18zm211.82,0c-23.258,23.257 -61.101,23.258 -84.36,0l-42.18,-42.18l42.18,-42.18c23.257,-23.258 61.102,-23.258 84.36,0s23.258,61.102 0,84.36z" id="svg_6"/>
+  </g>
+  <ellipse fill="#80b9ed" stroke="null" stroke-width="null" stroke-dasharray="null" stroke-opacity="null" fill-opacity="null" opacity="NaN" cx="225.12299" cy="214.623" id="svg_7" rx="93" ry="101"/>
+  <ellipse fill="#80b9ed" stroke="null" stroke-width="null" stroke-dasharray="null" stroke-opacity="null" fill-opacity="null" opacity="undefined" cx="153.62299" cy="225.623" id="svg_8" rx="97.5" ry="99"/>
+  <ellipse fill="#80b9ed" stroke="null" stroke-width="null" stroke-dasharray="null" stroke-opacity="null" fill-opacity="null" opacity="undefined" cx="359.62299" cy="236.623" id="svg_9" rx="97.5" ry="135"/>
+  <ellipse fill="#80b9ed" stroke="null" stroke-width="null" stroke-dasharray="null" stroke-opacity="null" fill-opacity="null" opacity="undefined" cx="183.12299" cy="265.623" id="svg_10" rx="133" ry="135"/>
+  <ellipse stroke="#80b9ed" ry="254.50002" rx="255.00003" id="svg_2" cy="256" cx="256.50002" opacity="undefined" fill="#80b9ed"/>
+ </g>
+
+</svg>

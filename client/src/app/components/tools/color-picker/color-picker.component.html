@@ -1,0 +1,91 @@
+<div onselectstart='return false'>
+    <span [hidden]="isHiddenColorPannel && !colorService.isPrimaryColor" class="color-title">Primaire</span>
+    <span [hidden]="isHiddenColorPannel && colorService.isPrimaryColor" class="color-title">Secondaire</span>
+    <br>
+    <!-- Primary color button -->
+    <span [hidden]="isHiddenColorPannel && !colorService.isPrimaryColor"><button 
+        mat-raised-button 
+        class="color-button" 
+        [disabled]="isHiddenColorPannel"
+        [ngClass]="isHiddenColorPannel && colorService.isPrimaryColor ? 'primary' : ''"
+        [ngStyle]="{ backgroundColor: this.colorService.primaryColor.hex }" 
+        (click)="this.onClickColorButton(true)">
+    </button></span>
+    <!-- Switch button -->
+    <span [hidden]="isHiddenColorPannel"><button
+            mat-raised-button 
+            class="color-switch" 
+            [disabled]="isHiddenColorPannel"
+            (click)="colorService.switchPrimarySecondary()">
+            <img [src]="'../../../../assets/swap.svg'" />
+    </button></span>
+    <!-- Secondary color button -->
+    <span [hidden]="isHiddenColorPannel && colorService.isPrimaryColor">
+        <button 
+            mat-raised-button 
+            class="color-button" 
+            [disabled]="isHiddenColorPannel"
+            [ngClass]="isHiddenColorPannel && !colorService.isPrimaryColor ? 'primary' : 'secondary'"
+            [ngStyle]="{backgroundColor:this.colorService.secondaryColor.hex}" 
+            (click)="this.onClickColorButton(false)">
+        </button>
+    </span>
+    <div class="container mat-app-background" *ngIf="isHiddenColorPannel">
+        <div>
+            <div class="color-components">
+                <app-color-panel [hue]="colorService.hue"></app-color-panel>
+                <br>
+                <app-color-slider></app-color-slider>
+                <br>
+                <div class="action-buttons">
+                    <button mat-raised-button class="confirmation-button" color="primary" (click)="onConfirmColor()">
+                        <span>Confirmer</span>
+                    </button>
+                    <br>
+                    <button mat-raised-button class="cancel-button" color="warn" (click)="onCancelColor()"><span>Annuler</span></button>
+                </div>
+            </div>
+            <br>
+            
+            <div class="options">
+                <span class="option-title">   Saisir la couleur en Hex </span>
+                <div class="champ-de-saisie">
+        
+                    <span class="rgb-title">R</span>
+                    <span class="rgb-title">G</span>
+                    <span class="rgb-title">B</span>
+                    <br>
+        
+                    <span class="rgb-champ-de-saisie">
+                        <input class="champ-de-saisie-hex" type="text" maxlength="2"
+                            [ngModel]="colorService.chooseCurrentColor().hex | slice:1:3"
+                            (input)="onRgbaInputChange($event, 0)" />
+                    </span>
+                    <span class="rgb-champ-de-saisie">
+                        <input class="champ-de-saisie-hex" type="text" maxlength="2"
+                            [ngModel]="colorService.chooseCurrentColor().hex | slice:3:5"
+                            (input)="onRgbaInputChange($event,1)" />
+                    </span>
+                    <span class="rgb-champ-de-saisie">
+                        <input class="champ-de-saisie-hex" type="text" maxlength="2"
+                            [ngModel]="colorService.chooseCurrentColor().hex | slice:5:7"
+                            (input)="onRgbaInputChange($event,2)" /></span>
+                </div>
+                <br>
+                <span class="option-title">Opacité:</span>
+                <br>
+                <mat-slider min="0" max="1" step="0.1" [value]="colorService.chooseCurrentColor().alpha"
+                    (change)="this.colorService.onSliderOpacityChanger($event.value)"></mat-slider>
+                {{ colorService.chooseCurrentColor().alpha }}
+            </div>
+        </div>
+    </div>
+    <div class="color-history">
+        <button class="old-color" *ngFor="let color of this.colorService.colorsHistory"
+            (click)="this.colorService.onSelectPrimaryColor(color,true,$event)"
+            (contextmenu)="this.colorService.onSelectPrimaryColor(color,false,$event)"
+            [style.background-color]="color.hex">
+        </button>
+    </div>
+    <br>
+</div>

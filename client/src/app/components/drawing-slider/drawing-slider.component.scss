@@ -1,0 +1,189 @@
+:host {
+  flex: 1;
+}
+
+.carousel {
+  position: relative;
+  width: 1125px;
+  height: 530px;
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.card {
+  margin: 0;
+  max-width: 370px;
+  margin: 0px 10px;
+  border: 0.5px solid black;
+  display: inline-block;
+  width: 370px;
+  height: 500px;
+  object-fit: cover;
+  transition: transform 150ms cubic-bezier(0.25, 0.46, 0.45, 0.84);
+  border-radius: 0.5em;
+}
+
+p {
+  font-size: larger;
+}
+
+mat-card-actions {
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+}
+
+mat-chip-list {
+  margin: 0;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+img {
+  height: 350px;
+}
+
+.tag-container {
+  font-size: larger;
+  display: flex;
+}
+
+.slide:hover {
+  transform: scale(1.025);
+}
+
+.control {
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  outline: 0; // remove blue outline border, but make sure they are still focussable for accessibility
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5em;
+  color: black;
+  font-weight: bold;
+  font-size: 3em;
+  user-select: none;
+  height: 100%;
+  // opacity effect on hover
+  transition: opacity 150ms cubic-bezier(0.25, 0.46, 0.45, 0.84);
+
+  &:hover, &:focus {
+    // opacity: 1;
+    background-color: rgba(180, 180, 172, 0.281);
+  }
+
+  /* Position the buttons */
+  &.next {
+    right: 10px;
+  }
+  &.prev {
+    left: 10px;
+  }
+}
+
+/* style the arrows */
+.arrow {
+  display: block;
+  border-left: 0.1em solid black;
+  border-bottom: 0.1em solid black;
+  width: 0.5em;
+  height: 0.5em;
+
+  &.left {
+    transform: rotate(45deg);
+  }
+  &.right {
+    transform: rotate(225deg);
+  }
+}
+
+.tag-chip-list {
+  width: 100%;
+}
+
+mat-spinner {
+  position: absolute;
+  top: 100px;
+  left: 430px;
+}
+
+.logo {
+  position: absolute;
+  top: 100px;
+  left: 310px;
+  width: 950px;
+  animation-name: pulse;
+  animation-duration:1.5s;
+  animation-iteration-count: infinite; 
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  50% { transform: scale(0.94); }
+  to { transform: scale(1); }
+}
+
+.confirm-dialog {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+
+  button {
+    margin: 20px;
+    font-size: larger;
+  }
+}
+
+.confirm-dialog-content {
+  font-size: larger;
+  border: 3px solid red !important;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 10px;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  position: absolute;
+  top: 200px;
+  left: 450px;
+  border: 1px solid #888;
+  width: 40%;
+  height: 30%;
+
+  p {
+    margin-top: 60px;
+  }
+}
+
+.error-msg {
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  top: 200px;
+  left: 380px;
+  width: 800px;
+  height: 200px;
+  font-size: larger;
+  background-color: rgb(245, 191, 191);
+  border: 1px solid red;
+
+  p {
+    padding-top: 50px;
+    top: 100px;
+  }
+}

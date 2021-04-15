@@ -1,0 +1,36 @@
+<div class="container" appMainListener tabindex="-1">
+    <a href="https://crouton.net/" tabindex="-1">
+        <img class="header-item" src="../../../assets/onlyDraw.png">
+    </a>
+
+    <button class="continue-button" mat-raised-button (click)="onContinueCanvas()" *ngIf="drawingService.checkIfSavedCanvas()" routerLink="/editor">
+        <img [src]='"../../../assets/continue.svg"' />
+        <p>
+            Continuer le dessin
+        </p>
+    </button>
+
+    <button class="new-button" mat-raised-button (click)="onOpenNewCanvas()">
+        <img [src]="'../../../assets/new.svg'" />
+        <p>
+            Nouveau dessin
+        </p>
+    </button>
+
+    <button class="carousel-button" mat-raised-button (click)="drawingService.openCarouselDialog()">
+        <img [src]='"../../../assets/gallery.svg"' />
+        <p>
+            Carrousel de dessins
+        </p>
+    </button>
+
+    <div class="footer-item">
+        <h4 class="team-name">Équipe Astronaute</h4>
+        <p>
+            <a target="_blank" href="https://www.instagram.com/marcantoine_aj/">Marc-Antoine Abou Jaoude</a> <span> (They/It2)</span>, 
+            <a target="_blank" href="https://www.instagram.com/habibiroy">Roy Boutros</a> <span> (He/Him)</span>, 
+            <a target="_blank" href="https://www.instagram.com/jeanpaulkhoueiryy/">Jean-Paul Khoueiry</a> <span> (Dinosaur/Undefined)</span>, 
+            <a target="_blank" href="https://www.instagram.com/sarkistik_/">Anthony Sarkis</a> <span> (He/Him)</span>, 
+            <a target="_blank" href="https://www.instagram.com/william_youu/">William Younanian</a> <span> (He/Him)</span></p>
+    </div>
+</div>

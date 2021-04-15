@@ -1,0 +1,8 @@
+<p>Épaisseur du crayon</p>
+<mat-slider [max]="maxLineThickness" 
+            [min]="minLineThickness" 
+            [value]="lineThickness" 
+            (input)="lineThickness=$event.value"
+            (change)="onSliderChange($event.value)" >
+</mat-slider>
+<span>{{ lineThickness }} px</span>

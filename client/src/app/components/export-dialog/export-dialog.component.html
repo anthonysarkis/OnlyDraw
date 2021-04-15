@@ -1,0 +1,72 @@
+<div>
+    <h1 mat-dialog-title>Exporter le dessin</h1>
+    <br>
+    
+    <mat-dialog-content class="mat-typography">
+
+        <div>
+            <mat-form-field>
+                <mat-label>Nom du dessin à exporter</mat-label>
+                <input required matInput type="text" [(ngModel)]="exportService.fileName">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-label>Format désiré: </mat-label>
+            <mat-select [(value)]="exportService.format">
+                <mat-option value="jpeg">JPG</mat-option>
+                <mat-option value="png">PNG</mat-option>
+            </mat-select>
+        </div>
+
+        <div>
+            <mat-label>Filtre: </mat-label>
+            <mat-select [(value)]="exportService.filter" (selectionChange)="onFilterChange()">
+                <mat-option value="noFilter">Aucun filtre</mat-option>
+                <mat-option value="negativeFilter">Négatif</mat-option>
+                <mat-option value="grayscaleFilter">Niveaux de gris</mat-option>
+                <mat-option value="sepiaFilter">Sepia</mat-option>
+                <mat-option value="saturationFilter">Saturé</mat-option>
+                <mat-option value="dog">Filtre surprise</mat-option>
+                <mat-option value="gme">Filtre astronaute</mat-option>
+            </mat-select>
+        </div>
+        
+    </mat-dialog-content>
+
+    <h3>Voici l'image qui sera exportée: </h3>
+    <canvas 
+        #exportPreview 
+        class="export-canvas"
+    >
+    </canvas>
+
+    <mat-dialog-actions align="end">
+        <button mat-raised-button [mat-dialog-close]="true" color="primary" (click)="onExportImage()">Exporter</button>
+        <button mat-raised-button color="primary" (click)="onExportImgur()">Exporter sur Imgur</button>
+        <button mat-raised-button [mat-dialog-close]="false" cdkFocusInitial color="warn">Annuler</button>
+    </mat-dialog-actions>
+</div>
+
+<div class="confirm-dialog" *ngIf="exportService.showImgurMsg">
+    <div class="confirm-dialog-content">
+        <p>Voici le lien Imgur: <a [href]="this.exportService.imgurLink" target="_blank">{{this.exportService.imgurLink}}</a></p>
+        <button
+            style="margin:10px" 
+            mat-raised-button 
+            color="primary" 
+            [cdkCopyToClipboard]="this.exportService.imgurLink" 
+            (click)="this.exportService.showImgurMsg=false" 
+            (click)="onOpenSnackbar()"
+        >
+            Copier
+        </button>
+        <button 
+            mat-raised-button 
+            color="warn" 
+            (click)="this.exportService.showImgurMsg=false"
+        >
+            Annuler
+        </button>
+    </div>
+</div>

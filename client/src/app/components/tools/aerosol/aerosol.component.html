@@ -1,0 +1,26 @@
+<p>Diamètre du jet</p>
+<mat-slider [max]="maxDiameter" 
+            [min]="minDiameter" 
+            [value]="diameter" 
+            (input)="diameter=$event.value"
+            (change)="onDiameterChange($event.value)" >
+</mat-slider>
+<span>{{ diameter }} px</span>
+
+<p>Diamètre des points</p>
+<mat-slider [max]="maxPointSize" 
+            [min]="minPointSize" 
+            [value]="pointSize" 
+            (input)="pointSize=$event.value"
+            (change)="onPointSizeChange($event.value)" >
+</mat-slider>
+<span>{{ pointSize }} px</span>
+
+<p>Émissions par seconde</p>
+<mat-slider [max]="maxEmissions" 
+            [min]="minEmissions" 
+            [value]="emissions" 
+            (input)="emissions=$event.value"
+            (change)="onEmissionsChange($event.value)" >
+</mat-slider>
+<span>{{ emissions }} Hz</span>

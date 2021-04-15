@@ -1,0 +1,75 @@
+div {
+    text-align:center;
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .mat-dialog-content {
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: large;
+        font-weight: bold;
+    }
+
+    mat-label {
+        font-size: large;
+        font-weight: bold;
+    }
+
+    button {
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        font-size: 20px;
+        color: white;
+    }
+
+    mat-select {
+        width: 200px;
+    }
+
+    .mat-select-panel {
+        background-color: red;
+        font-size: 10px;
+    }
+}
+
+.name {
+    display: inline-block;
+}
+
+.export-canvas {
+    margin: 2px;
+    display: inline;
+    border: 2px solid black;
+}
+
+.confirm-dialog-content {
+    font-size: larger;
+    border: 10px solid #3F51B5 !important;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 10px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    position: absolute;
+    top: 200px;
+    left: 450px;
+    border: 1px solid #888;
+    width: 40%;
+    height: 30%;
+  
+    p {
+      margin-top: 60px;
+    }
+}
+
+mat-dialog-actions {
+    margin-top: 20px;
+}

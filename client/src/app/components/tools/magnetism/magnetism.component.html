@@ -1,0 +1,24 @@
+<div class="magnetisme-toggle" >
+    <div class="label">
+        <mat-label >Activer Magnétisme</mat-label>
+        <mat-icon matTooltip="Permet de coller la sélection au coin de la grille choisi" matTooltipPosition="above">info_outline</mat-icon>
+    </div>
+    <div (click)="onApplyMagnet()" id="resizing-container">
+        <mat-slide-toggle id="resizing-container" [checked]="magnetism.applyMagnet"></mat-slide-toggle>
+    </div>
+</div>
+<hr>
+<br>
+
+<div class="container"  *ngIf="magnetism.applyMagnet">
+    <img id="grid-image" src="https://www.pngkey.com/png/full/846-8467990_4-box-square-png.png" alt="grid">
+    <button [ngClass]="{ active: magnetism.selectedOption === 'BottomLeft' }" class="btn btn-bot-left" id="resizing-container" (click)="magnetism.selectedOption='BottomLeft'">o</button>
+    <button [ngClass]="{ active: magnetism.selectedOption === 'BottomMiddle' }" class="btn btn-bot-middle" id="resizing-container" (click)="magnetism.selectedOption='BottomMiddle'">o</button>
+    <button [ngClass]="{ active: magnetism.selectedOption === 'BottomRight' }" class="btn btn-bot-right" id="resizing-container" (click)="magnetism.selectedOption='BottomRight'">o</button>
+    <button [ngClass]="{ active: magnetism.selectedOption === 'MiddleLeft' }" class="btn btn-mid-left" id="resizing-container" (click)="magnetism.selectedOption='MiddleLeft'">o</button> 
+    <button [ngClass]="{ active: magnetism.selectedOption === 'Middle' }" class="btn btn-mid" id="resizing-container" (click)="magnetism.selectedOption='Middle'">o</button> 
+    <button [ngClass]="{ active: magnetism.selectedOption === 'MiddleRight' }" class="btn btn-mid-right" id="resizing-container" (click)="magnetism.selectedOption='MiddleRight'">o</button> 
+    <button [ngClass]="{ active: magnetism.selectedOption === 'TopLeft' }" class="btn btn-top-left" id="resizing-container" (click)="magnetism.selectedOption='TopLeft'">o</button>
+    <button [ngClass]="{ active: magnetism.selectedOption === 'TopMiddle' }" class="btn btn-top-middle" id="resizing-container" (click)="magnetism.selectedOption='TopMiddle'">o</button>
+    <button [ngClass]="{ active: magnetism.selectedOption === 'TopRight' }" class="btn btn-top-right" id="resizing-container" (click)="magnetism.selectedOption='TopRight'">o</button>
+</div>

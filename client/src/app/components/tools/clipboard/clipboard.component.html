@@ -1,0 +1,22 @@
+<div class="clipboard">
+    <span mat-raised-button matTooltip="Copier (Ctrl + C)" matTooltipPosition="above">
+        <button [disabled]="!this.clipboard.selectionService.isSelected" mat-raised-button (click)="onCopy()" class="clipboard" id="resizing-container">
+            <img id="resizing-container" [src]="'../../../assets/copy.svg'">
+        </button>
+    </span>
+    <span matTooltip="Coller (Ctrl + V)" matTooltipPosition="above">
+        <button [disabled]="!this.clipboard.image" mat-raised-button (click)="onPaste()" class="clipboard" id="resizing-container">
+            <img id="resizing-container" [src]="'../../../assets/paste.svg'">
+        </button>
+    </span>
+    <span matTooltip="Couper (Ctrl + X)" matTooltipPosition="above" >
+        <button [disabled]="!this.clipboard.selectionService.isSelected" mat-raised-button (click)="onCut()" class="clipboard" id="resizing-container">
+            <img id="resizing-container" [src]="'../../../assets/cut.svg'">
+        </button>
+    </span>
+    <span matTooltip="Supprimer (Delete)" matTooltipPosition="above">
+        <button [disabled]="!this.clipboard.selectionService.isSelected" mat-raised-button (click)="onDelete()" class="clipboard" id="resizing-container">
+            <img id="resizing-container" [src]="'../../../assets/delete.svg'">
+        </button>
+    </span>
+</div>

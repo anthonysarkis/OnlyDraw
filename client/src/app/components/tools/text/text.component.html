@@ -1,0 +1,37 @@
+<mat-label>Taille de la police</mat-label>
+<mat-slider [max]="maxFontSize" [min]="minFontSize" [value]="fontSize" (input)="fontSize = $event.value" (change)="onFontSizeChange($event.value)">
+</mat-slider>
+<span>{{ fontSize }} px</span>
+
+<br />
+<br />
+
+<mat-form-field appearance="fill">
+    <mat-label>Police</mat-label>
+    <mat-select [ngStyle]="{ 'font-family': font }" (selectionChange)="this.onFontFamilyChange()" [(value)]="font">
+        <mat-option [ngStyle]="{ 'font-family': option }" [value]="option" *ngFor="let option of fonts">{{ option }}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<br />
+<br />
+
+<mat-button-toggle-group (change)="onTextAlignChange($event.value)" [value]="textService.currentStyle['text-align']" #group="matButtonToggleGroup">
+    <mat-button-toggle value="left" aria-label="Text align left">
+        <mat-icon>format_align_left</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="center" aria-label="Text align center">
+        <mat-icon>format_align_center</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="right" aria-label="Text align right">
+        <mat-icon>format_align_right</mat-icon>
+    </mat-button-toggle>
+</mat-button-toggle-group>
+
+<br />
+<br />
+
+<mat-button-toggle-group (change)="onFontChange($event.value)" name="fontStyle" aria-label="Font Style" [multiple]="true">
+    <mat-button-toggle [checked]="textService.currentStyle['font-weight']==='bold'" value="bold"><mat-icon>format_bold</mat-icon></mat-button-toggle>
+    <mat-button-toggle [checked]="textService.currentStyle['font-style']==='italic'" value="italic"><mat-icon>format_italic</mat-icon></mat-button-toggle>
+</mat-button-toggle-group>

@@ -1,0 +1,76 @@
+<div>
+    <div *ngIf="carouselService.showSpinner" class="basic-container">
+        <p>Quelques instants svp...</p>
+        <img class="logo" src="../../../assets/onlyDraw.png">
+    </div>
+    <div *ngIf="!carouselService.showSpinner && !carouselService.showErrorMessage">
+        <h1>Carousel Dessin</h1>
+
+        <p>Nombre de dessins : {{ this.carouselService.images.length }}</p>
+        <mat-form-field class="tag-chip-list">
+        <mat-label>Étiquettes de filtrage</mat-label>
+        <mat-chip-list #chipList>
+            <mat-chip 
+                *ngFor="let tag of carouselService.filterTags" 
+                [selectable]="true"
+                [removable]="true" 
+                (removed)="remove(tag)"
+                matChipRemove>
+                {{ tag }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Nouvelle étiquette"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        </mat-form-field>
+
+        <div class="carousel" *ngIf="this.carouselService.images && this.carouselService.images.length !== 0">
+            <ng-container class="card slide" *ngFor="let index of this.carouselService.currentIndexes">
+                <mat-card class="card slide" *ngIf="index < this.carouselService.images.length">
+                    <img mat-card-image [src]="carouselService.images[index].encoding">
+                    <hr>
+                    <mat-card-content>
+                        <p>Nom: {{ carouselService.images[index].name }}</p>
+                        <div class="tag-container" *ngIf="carouselService.images[index].tags.length !== 0">
+                            Étiquettes: 
+                            <mat-chip-list #chipList class="tag-seletion" cdkDropListOrientation="horizontal">
+                                <mat-chip color="accent" *ngFor="let tag of carouselService.images[index].tags">
+                                    {{ tag }}
+                                </mat-chip>
+                            </mat-chip-list>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary" (click)="imageIndex = index; onLoadImage(index)">Charger</button>
+                        <button mat-raised-button color="warn" (click)="onDeleteImage(index)">Effacer</button>
+                    </mat-card-actions>
+                </mat-card>
+            </ng-container>
+
+            <button *ngIf="this.carouselService.images && this.carouselService.images.length > 3" class="control prev" (click)="carouselService.onPreviousClick()">
+                <span class="arrow left"></span>
+            </button>
+            <button *ngIf="this.carouselService.images && this.carouselService.images.length > 3" class="control next" (click)="carouselService.onNextClick()">
+                <span class="arrow right"></span>
+            </button>
+        </div>
+
+        <h2 *ngIf="this.carouselService.images && this.carouselService.images.length === 0">
+            <p>Aucune image avec ce ou ces filtres n'a été trouvée</p>
+        </h2>
+    </div>
+
+    <div class="confirm-dialog" *ngIf="carouselService.showConfirmationMsg">
+        <div class="confirm-dialog-content">
+            <p>Vous avez des modifications sur le canvas non enregistrées qui seront perdues si vous décidez de continuer!</p>
+            <button mat-raised-button color="primary" (click)="onLoadImage(imageIndex)">Continuer</button>
+            <button mat-raised-button color="warn" (click)="this.carouselService.showConfirmationMsg = false">Annuler</button>
+        </div>
+    </div>
+    <div class="error-msg" *ngIf="carouselService.showErrorMessage">
+        <p>Erreur: {{ carouselService.errorMessage }}</p>
+        <button (click)="carouselService.showErrorMessage=false;carouselService.errorMessage=''">X</button>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+export enum ToolNames {
+    Pencil = 'Crayon',
+    Line = 'Ligne',
+    Rectangle = 'Rectangle',
+    Eraser = 'Efface',
+    Ellipse = 'Ellipse',
+    Pipette = 'Pipette',
+    Polygon = 'Polygone',
+    Aerosol = 'Aérosol',
+    Bucket = 'Sceau de peinture',
+    Text = 'Texte',
+    Stamp = 'Étampe',
+    SelectionRectangle = 'Rectangle de sélection',
+    SelectionEllipse = 'Ellipse de sélection',
+    Lasso = 'Lasso polygonal',
+    Grid = 'Grille',
+    Magnetism = 'Magnétisme',
+}

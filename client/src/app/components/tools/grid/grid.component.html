@@ -1,0 +1,31 @@
+<div>
+    <div>
+        <mat-label>Activer Grille</mat-label>
+        <br>
+        <mat-slide-toggle (change)="onShowGrid($event.checked)" [checked]="gridService.showGrid"></mat-slide-toggle>
+    </div>
+    <br>
+    <mat-label>Taille des carrés</mat-label>
+    <mat-slider
+        [disabled]="!this.gridService.showGrid"
+        [min]="minSquareSize" 
+        [max]="maxSquareSize" 
+        [value]="gridService.squareSize" 
+        (input)="this.gridService.squareSize=$event.value"
+        (change)="onGridChange()">
+    </mat-slider>
+    <span>{{ gridService.squareSize }} px</span>
+    <br>
+    <mat-label>Opacité de la grille</mat-label>
+    <br>
+    <mat-hint>Min: 5% | Max: 100%</mat-hint>
+    <mat-slider
+        [disabled]="!this.gridService.showGrid" 
+        [min]="minOpacity" 
+        [max]="1" 
+        step="0.05" 
+        [value]="gridService.opacity" 
+        (change)="onOpacityChange($event.value)">
+    </mat-slider>
+    <span>{{ gridService.opacity * 100 | number: '1.0-0' }} %</span>
+</div>

@@ -1,0 +1,122 @@
+<div
+    class="main"
+    [hidden]="!this.selectionService.isSelected"
+    [style.width.px]="this.selectionService.currentDimensions.width"
+    [style.height.px]="this.selectionService.currentDimensions.height"
+    [style.top.px]="this.selectionService.currentCorner.y"
+    [style.left.px]="this.selectionService.currentCorner.x"
+>
+    <canvas 
+        id="selectionCanvas"
+        #selectionCanvas 
+        [hidden]="!this.selectionService.isSelected"
+        [width]="this.selectionService.currentDimensions.width"
+        [height]="this.selectionService.currentDimensions.height"
+        [style.top.px]="this.selectionService.currentCorner.y"
+        [style.left.px]="this.selectionService.currentCorner.x"
+    >
+    </canvas>
+
+    <div 
+        class="drag-box ld-resize"
+        (cdkDragMoved)="dragMove($event, 0)"
+        (cdkDragEnded)="dragEnd()"
+        [(cdkDragFreeDragPosition)]="this.resizeService.anchors[0]"
+        cdkDrag>
+        <div class="interior-drag-box ld-resize"></div>
+    </div>
+    <div 
+        class="drag-box v-resize" 
+        cdkDragLockAxis="y"
+        (cdkDragMoved)="dragMove($event, 1)"
+        (cdkDragEnded)="dragEnd()"
+        [(cdkDragFreeDragPosition)]="this.resizeService.anchors[1]"
+        cdkDrag>
+        <div class="interior-drag-box v-resize"></div>
+    </div>
+    <div 
+        class="drag-box rd-resize" 
+        (cdkDragMoved)="dragMove($event, 2)"
+        (cdkDragEnded)="dragEnd()"
+        [(cdkDragFreeDragPosition)]="this.resizeService.anchors[2]" 
+        cdkDrag>
+        <div class="interior-drag-box rd-resize"></div>
+    </div>
+    <div 
+        class="drag-box h-resize" 
+        cdkDragLockAxis="x" 
+        (cdkDragMoved)="dragMove($event, 3)"
+        (cdkDragEnded)="dragEnd()"
+        [(cdkDragFreeDragPosition)]="this.resizeService.anchors[3]" 
+        cdkDrag>
+        <div class="interior-drag-box h-resize"></div>
+    </div>
+    <div 
+        class="drag-box ld-resize" 
+        (cdkDragMoved)="dragMove($event, 4)"
+        (cdkDragEnded)="dragEnd()"
+        [(cdkDragFreeDragPosition)]="this.resizeService.anchors[4]" 
+        cdkDrag
+    >
+        <div class="interior-drag-box ld-resize"></div>
+    </div>
+    <div
+        class="drag-box v-resize" 
+        cdkDragLockAxis="y" 
+        (cdkDragMoved)="dragMove($event, 5)"
+        (cdkDragEnded)="dragEnd()"
+        [(cdkDragFreeDragPosition)]="this.resizeService.anchors[5]" 
+        cdkDrag>
+        <div class="interior-drag-box v-resize"></div>
+    </div>
+    <div 
+        class="drag-box rd-resize" 
+        (cdkDragMoved)="dragMove($event, 6)"
+        (cdkDragEnded)="dragEnd()"
+        [(cdkDragFreeDragPosition)]="this.resizeService.anchors[6]" 
+        cdkDrag>
+        <div class="interior-drag-box rd-resize"></div>
+    </div>
+    <div 
+        class="drag-box h-resize"
+        (cdkDragMoved)="dragMove($event, 7)"
+        (cdkDragEnded)="dragEnd()"
+        cdkDragLockAxis="x" 
+        [(cdkDragFreeDragPosition)]="this.resizeService.anchors[7]"
+        cdkDrag>
+        <div class="interior-drag-box h-resize"></div>
+    </div>
+
+    <div 
+        class="bottom-mask" 
+        [style.left.px]="this.selectionService.drawingService.canvas?.getBoundingClientRect().left" 
+        [style.top.px]="this.selectionService.drawingService.canvas?.height + 5">
+    </div>
+    <div 
+        class="right-mask" 
+        [style.top.px]="1" 
+        [style.left.px]="this.selectionService.drawingService.canvas?.width + this.selectionService.drawingService.canvas?.getBoundingClientRect().left + 5"
+        >
+    </div>
+</div>
+
+<div class="dimensions-panel"
+    *ngIf="selectionService.isBorderSelected"
+    [style.top.px]="this.resizeService.previewCorners[0].y - 70"
+    [style.left.px]="this.resizeService.previewCorners[0].x - 85">
+    <p>Largeur: {{ this.resizeService.previewDimensions.width }}</p>
+    <p>Hauteur: {{ this.resizeService.previewDimensions.height }}</p>
+</div>
+
+
+<div
+    appSelectionListener
+    class="resizing-container"
+    [hidden]="!this.selectionService.isSelected"
+    [style.border-color]="borderColor"
+    [style.height.px]="resizeService.previewDimensions.height"
+    [style.width.px]="resizeService.previewDimensions.width" 
+    [style.top.px]="this.resizeService.previewCorners[0].y"
+    [style.left.px]="this.resizeService.previewCorners[0].x"
+>
+</div>

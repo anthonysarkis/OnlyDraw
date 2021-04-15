@@ -1,0 +1,61 @@
+div.option-panel {
+    height: 75%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.clipboard {
+    margin-right: 5px;
+    overflow: hidden;
+}
+
+div.option-panel::-webkit-scrollbar {
+    width: 10px;
+    height: 4px;
+}
+
+div.option-panel::-webkit-scrollbar-track {
+    background-color:  rgba(0, 0, 0, 0.26) !important;
+    border-radius: 2px;
+}
+
+div.option-panel::-webkit-scrollbar-thumb {
+    background: #3F51B5; 
+    border-radius: 2px;
+    width: 10px;
+}
+
+div.option-panel::-webkit-scrollbar-thumb:hover {
+    background: #1933a7; 
+    border-radius: 5px;
+}
+
+mat-card {
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #3F51B5;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 0;
+    border: 0.5px solid rgba(0, 0, 0, 0.13);
+    vertical-align: middle;
+}
+
+mat-card-content {
+    font-size: medium;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3px;
+    padding: 0;
+
+    p {
+        margin: 0;
+        padding: 10px 0px;
+    }
+}
+
+img {
+    max-width: 24px;
+    padding: 0;
+    margin: 0;
+}

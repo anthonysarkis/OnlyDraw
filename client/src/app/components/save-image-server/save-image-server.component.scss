@@ -1,0 +1,127 @@
+div {
+  
+  text-align:center;
+
+  .mat-dialog-content {
+    font-size: 18px;
+}
+
+  .container {
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+      width: 100%;
+
+      .tag-input {
+          width: 70%;
+
+          mat-form-field {
+              width: 100%;
+          }
+      }
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  mat-label {
+    font-size: large;
+    font-weight: bold;
+  }
+
+  img {
+      border: 1px solid black;
+  }
+
+  .logo {
+    position: absolute;
+  }
+
+mat-dialog-actions {
+  margin-top: 80px;
+}
+
+
+img {
+    border: 1px solid black;
+}
+
+.logo {
+  position: absolute;
+  top: 100px;
+  left: 330px;
+  width: 900px;
+  border: 0px none;
+  animation-name: pulse;
+  animation-duration:1.5s;
+  animation-iteration-count: infinite; 
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  50% { transform: scale(0.94); }
+  to { transform: scale(1); }
+}
+
+.error-msg {
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  top: 200px;
+  left: 400px;
+  width: 600px;
+  height: 200px;
+  font-size: larger;
+  background-color: rgb(245, 191, 191);
+  border: 1px solid red;
+
+  p {
+    padding-top: 50px;
+    top: 100px;
+    left: 330px;
+    width: 900px;
+    border: 0px none;
+    animation-name: pulse;
+    animation-duration:1.5s;
+    animation-iteration-count: infinite; 
+  }
+
+  @keyframes pulse {
+    from { transform: scale(1); }
+    50% { transform: scale(0.94); }
+    to { transform: scale(1); }
+  }
+
+  .error-msg {
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    top: 200px;
+    left: 400px;
+    width: 600px;
+    height: 200px;
+    font-size: larger;
+    background-color: rgb(245, 191, 191);
+    border: 1px solid red;
+
+    p {
+      padding-top: 50px;
+      top: 100px;
+    }
+  }
+
+  button {
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    font-size: 20px;
+    color: white;
+  }
+}
+button {
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  font-size: 20px;
+  color: white;
+}
+}
