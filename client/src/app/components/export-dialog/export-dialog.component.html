@@ -49,17 +49,17 @@
 </div>
 
 <div class="confirm-dialog" *ngIf="exportService.showImgurMsg">
-    <div class="confirm-dialog-content">
+    <div id="popUp" class="confirm-dialog-content">
         <p>Voici le lien Imgur: <a [href]="this.exportService.imgurLink" target="_blank">{{this.exportService.imgurLink}}</a></p>
         <button
-            style="margin:10px" 
+            style="margin:10px"
             mat-raised-button 
             color="primary" 
             [cdkCopyToClipboard]="this.exportService.imgurLink" 
             (click)="this.exportService.showImgurMsg=false" 
             (click)="onOpenSnackbar()"
         >
-            Copier
+            Copier <mat-icon>content_copy</mat-icon>
         </button>
         <button 
             mat-raised-button 

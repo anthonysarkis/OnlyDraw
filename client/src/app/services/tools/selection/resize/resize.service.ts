@@ -13,7 +13,7 @@ export class ResizeService {
     dimensions: Dimensions;
     previewCorners: Vec2[];
     corners: Vec2[];
-    private selectedAnchor: number;
+    selectedAnchor: number;
     anchors: Vec2[];
     private lastPosition: Vec2;
 
@@ -23,7 +23,7 @@ export class ResizeService {
     private isBorderSelected: boolean;
 
     private resizeBindings: Map<Anchor, (position: Vec2) => void>;
-    private mirrorBindings: Map<Anchor, () => void>;
+    mirrorBindings: Map<Anchor, () => void>;
     private shiftBindings: Map<Anchor, () => void>;
 
     constructor() {
@@ -116,7 +116,7 @@ export class ResizeService {
         this.corners[END] = { x: this.previewCorners[END].x, y: this.previewCorners[END].y };
     }
 
-    private checkIfNeedsMirror(selectedAnchor: number): void {
+    checkIfNeedsMirror(selectedAnchor: number): void {
         const mirrorMethod = this.mirrorBindings.get(selectedAnchor) as () => void;
         mirrorMethod();
     }

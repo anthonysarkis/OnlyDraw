@@ -1,8 +1,9 @@
 import { CdkDragMove, DragDropModule } from '@angular/cdk/drag-drop';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ElementRef } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { CanvasTestHelper } from '@app/classes/canvas-test-helper';
 import { Rectangle } from '@app/classes/shapes/rectangle';
+import { Anchor } from '@app/enums/drag-anchors';
 import { ColorService } from '@app/services/color/color.service';
 import { DrawingService } from '@app/services/drawing/drawing.service';
 import { ResizeService } from '@app/services/tools/selection/resize/resize.service';
@@ -20,7 +21,7 @@ describe('SelectionComponent', () => {
 
     beforeEach(async(() => {
         selectionSpy = jasmine.createSpyObj('SelectionService', ['setDimensions', 'drawImage', 'clipShape', 'setCorners']);
-        resizeSpy = jasmine.createSpyObj('ResizeService', ['dragMove', 'dragEnd', 'resetProperties']);
+        resizeSpy = jasmine.createSpyObj('ResizeService', ['dragMove', 'dragEnd', 'resetProperties', 'checkIfNeedsMirror']);
         drawingStub = new DrawingService(new ColorService(), {} as UndoRedoService);
         canvasTestHelper = new CanvasTestHelper();
         drawingStub.canvas = canvasTestHelper.canvas;
@@ -60,6 +61,8 @@ describe('SelectionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(SelectionComponent);
         component = fixture.componentInstance;
+        component['canvas'] = new ElementRef<HTMLCanvasElement>(canvasTestHelper.selectionCanvas);
+        component['previewCtx'] = canvasTestHelper.selectionCanvas.getContext('2d') as CanvasRenderingContext2D;
         fixture.detectChanges();
     });
 
@@ -69,6 +72,7 @@ describe('SelectionComponent', () => {
 
     it('should call dragmove of canvas service when calling drag move from component with right params', () => {
         const cdkEvent = {} as CdkDragMove;
+        selectionSpy.imageWithBorder = new Image(1, 1);
         component.dragMove(cdkEvent, 0);
         expect(resizeSpy.dragMove).toHaveBeenCalledWith(cdkEvent, 0);
     });
@@ -101,4 +105,57 @@ describe('SelectionComponent', () => {
         expect(resizeSpy.dragEnd).toHaveBeenCalledWith();
         expect(selectionSpy.drawImage).toHaveBeenCalled();
     }));
+
+    it('should mirror in X only if previewXTransformation is true ', () => {
+        component.previewXTransformation = true;
+        component.previewYTransformation = false;
+        component['applyPreviewMirror']();
+        expect(component.previewXTransformation).toEqual(true);
+    });
+
+    it('should mirror in Y only if previewYTransformation is true ', () => {
+        component.previewXTransformation = false;
+        component.previewYTransformation = true;
+        component['applyPreviewMirror']();
+        expect(component.previewXTransformation).toEqual(false);
+    });
+
+    it('should mirror in X and Y only if previewXTransformation and previewYTransformation are true ', () => {
+        component.previewXTransformation = true;
+        component.previewYTransformation = true;
+        component['applyPreviewMirror']();
+        expect(component.previewXTransformation).toEqual(true);
+    });
+
+    it('should set previewXTransformation to true if not identical to service ', () => {
+        component.previewXTransformation = false;
+        selectionSpy.xTransformation = true;
+        resizeSpy.mirrorX = false;
+        component['needsXTransform']();
+        component.previewXTransformation = false;
+        selectionSpy.xTransformation = false;
+        resizeSpy.mirrorX = true;
+        component['needsXTransform']();
+        expect(selectionSpy.xTransformation).toEqual(false);
+    });
+
+    it('should set previewYTransformation to true if not identical to service ', () => {
+        component.previewYTransformation = false;
+        selectionSpy.yTransformation = true;
+        resizeSpy.mirrorY = false;
+        component['needsYTransform']();
+        component.previewYTransformation = false;
+        selectionSpy.yTransformation = false;
+        resizeSpy.mirrorY = true;
+        component['needsYTransform']();
+        expect(selectionSpy.yTransformation).toEqual(false);
+    });
+
+    it('dragMove should not call checkIfNeedsMirror if mirrorBindings are undefined ', () => {
+        const cdkEvent = {} as CdkDragMove;
+        selectionSpy.imageWithBorder = new Image(1, 1);
+        resizeSpy.mirrorBindings = {} as Map<Anchor, () => void>;
+        component.dragMove(cdkEvent, 0);
+        expect(resizeSpy.dragMove).toHaveBeenCalledWith(cdkEvent, 0);
+    });
 });

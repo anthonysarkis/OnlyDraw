@@ -120,3 +120,23 @@
     [style.left.px]="this.resizeService.previewCorners[0].x"
 >
 </div>
+
+<div 
+    [hidden]="!this.showPreviewCanvas"
+    class="main preview-div" 
+    [hidden]="!this.selectionService.isSelected"
+    [style.height.px]="resizeService.previewDimensions.height"
+    [style.width.px]="resizeService.previewDimensions.width" 
+    [style.top.px]="this.resizeService.previewCorners[0].y"
+    [style.left.px]="this.resizeService.previewCorners[0].x"
+>
+    <canvas 
+        #previewCanvas
+        class="preview-canvas"
+        [style.height.px]="resizeService.previewDimensions.height"
+        [style.width.px]="resizeService.previewDimensions.width" 
+        [style.top.px]="this.resizeService.previewCorners[0].y"
+        [style.left.px]="this.resizeService.previewCorners[0].x"
+    >
+    </canvas>
+</div>

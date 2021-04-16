@@ -10,7 +10,7 @@ import {
     MILLISECONDS_IN_SECOND,
     MIN_AEROSOL_DIAMETER,
     MIN_AEROSOL_EMISSIONS,
-    MIN_AEROSOL_POINT_SIZE,
+    MIN_AEROSOL_POINT_SIZE
 } from '@app/classes/constants';
 import { AerosolState } from '@app/classes/state/aerosol-state';
 import { Tool } from '@app/classes/tool';
@@ -79,7 +79,7 @@ export class AerosolService extends Tool {
         this.startSpray();
     }
 
-    onMouseUp(event: MouseEvent): void {
+    onMouseUp(): void {
         if (!this.mouseDown) return;
         this.addCommand();
         this.endSpray();
@@ -177,9 +177,9 @@ export class AerosolService extends Tool {
     private isPointInCanvas(point: Vec2): boolean {
         const canvasWidth = this.drawingService.canvas.width;
         const canvasHeight = this.drawingService.canvas.height;
-        if (point.x < 0 || point.y < 0) return false;
-        if (point.x > canvasWidth || point.y > canvasHeight) return false;
-        return true;
+        const isPointPositive = point.x > 0 && point.y > 0;
+        const isPointSmallerThanCanvas = point.x < canvasWidth && point.y < canvasHeight;
+        return isPointPositive && isPointSmallerThanCanvas;
     }
 
     private getRandomNumber(min: number, max: number): number {

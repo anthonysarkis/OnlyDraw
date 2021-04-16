@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Route } from '@angular/router';
@@ -24,6 +25,7 @@ describe('DrawingSliderComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
+                MatIconModule,
                 HttpClientTestingModule,
                 MatSnackBarModule,
                 MatDialogModule,

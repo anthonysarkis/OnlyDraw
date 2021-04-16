@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -25,7 +26,7 @@ describe('ExportDialogComponent', () => {
             'showSnackbar',
         ]);
         TestBed.configureTestingModule({
-            imports: [MatDialogModule, FormsModule, MatInputModule, MatFormFieldModule, BrowserAnimationsModule, MatSelectModule, MatSnackBarModule],
+            imports: [MatDialogModule, FormsModule, MatInputModule, MatFormFieldModule, BrowserAnimationsModule, MatSelectModule, MatSnackBarModule, MatIconModule],
             declarations: [ExportDialogComponent],
             providers: [{ provide: ExportService, useValue: exportSpy }],
         }).compileComponents();

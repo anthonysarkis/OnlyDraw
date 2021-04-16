@@ -7,7 +7,7 @@ import {
     MAX_AEROSOL_EMISSIONS,
     MIN_AEROSOL_DIAMETER,
     MIN_AEROSOL_EMISSIONS,
-    MIN_AEROSOL_POINT_SIZE,
+    MIN_AEROSOL_POINT_SIZE
 } from '@app/classes/constants';
 import { Vec2 } from '@app/classes/vec2';
 import { MouseButton } from '@app/enums/mouse-buttons';
@@ -93,14 +93,14 @@ describe('AerosolService', () => {
 
         service['offscreenContext'] = offscreenContextStub;
         service.mouseDown = true;
-        service.onMouseUp(mouseEvent);
+        service.onMouseUp();
         expect(endSpraySpy).toHaveBeenCalled();
     });
 
     it('onMouseUp should not call endSpray if mouse is not already down', () => {
         service.mouseDown = false;
         service['offscreenContext'] = offscreenContextStub;
-        service.onMouseUp(mouseEvent);
+        service.onMouseUp();
         expect(endSpraySpy).not.toHaveBeenCalled();
     });
 

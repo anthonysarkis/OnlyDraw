@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +26,7 @@ describe('SidebarComponent', () => {
             'openCarouselDialog',
         ]);
         TestBed.configureTestingModule({
-            imports: [MatDialogModule, MatTooltipModule, MatSlideToggleModule, BrowserAnimationsModule],
+            imports: [MatDialogModule, MatTooltipModule, MatSlideToggleModule, BrowserAnimationsModule, MatIconModule],
             declarations: [SidebarComponent],
             providers: [{ provide: DrawingService, useValue: drawingServiceSpy }],
         }).compileComponents();
