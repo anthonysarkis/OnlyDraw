@@ -74,7 +74,7 @@ export class PipetteService extends Tool {
     }
 
     private drawEmptyBackground(): void {
-        this.backgroundImage.src = './assets/empty.png';
+        this.backgroundImage.src = '../../../../../../assets/empty.png';
         this.dropperVisualisation.drawImage(this.backgroundImage, 0, 0);
     }
 

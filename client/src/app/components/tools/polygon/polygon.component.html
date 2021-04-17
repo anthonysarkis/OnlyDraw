@@ -19,7 +19,7 @@
 <br/>
 
 <mat-button-toggle-group (change) = "onRadioButtonChange($event.value)" aria-label="Select an option">
-    <mat-button-toggle [checked] ="this.polygonService.isBordered && !this.polygonService.isFilled" value="0" matTooltip="Contour"><img [src]="'./assets/polygone-contour.svg'"></mat-button-toggle>
-    <mat-button-toggle [checked] ="!this.polygonService.isBordered && this.polygonService.isFilled" value="1" matTooltip="Rempli"><img [src]="'./assets/polygone-filled.svg'"></mat-button-toggle>
-    <mat-button-toggle [checked] ="this.polygonService.isBordered && this.polygonService.isFilled"  value="2" matTooltip="Contour et rempli"><img [src]="'./assets/polygone.svg'"></mat-button-toggle>
+    <mat-button-toggle [checked] ="this.polygonService.isBordered && !this.polygonService.isFilled" value="0" matTooltip="Contour"><img [src]="'../../../../assets/polygone-contour.svg'"></mat-button-toggle>
+    <mat-button-toggle [checked] ="!this.polygonService.isBordered && this.polygonService.isFilled" value="1" matTooltip="Rempli"><img [src]="'../../../../assets/polygone-filled.svg'"></mat-button-toggle>
+    <mat-button-toggle [checked] ="this.polygonService.isBordered && this.polygonService.isFilled"  value="2" matTooltip="Contour et rempli"><img [src]="'../../../../assets/polygone.svg'"></mat-button-toggle>
 </mat-button-toggle-group>

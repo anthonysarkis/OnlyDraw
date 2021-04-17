@@ -234,7 +234,7 @@ export class SelectionPolygonService extends Tool {
         this.isInvalidSegment = true;
         const image = new Image();
         const imageScale = 0.1;
-        image.src = './assets/prohibition.png';
+        image.src = '../../../../../../assets/prohibition.png';
         this.drawingService.previewCtx.drawImage(
             image,
             currentPoint.x - (image.width * imageScale) / 2,

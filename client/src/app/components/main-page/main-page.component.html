@@ -1,24 +1,24 @@
 <div class="container" appMainListener tabindex="-1">
     <a href="https://crouton.net/" tabindex="-1">
-        <img class="header-item" src="./assets/onlyDraw.png">
+        <img class="header-item" src="../../../assets/onlyDraw.png">
     </a>
 
     <button class="continue-button" mat-raised-button (click)="onContinueCanvas()" *ngIf="drawingService.checkIfSavedCanvas()" routerLink="/editor">
-        <img [src]='"./assets/continue.svg"' />
+        <img [src]='"../../../assets/continue.svg"' />
         <p>
             Continuer le dessin
         </p>
     </button>
 
     <button class="new-button" mat-raised-button (click)="onOpenNewCanvas()">
-        <img [src]="'./assets/new.svg'" />
+        <img [src]="'../../../assets/new.svg'" />
         <p>
             Nouveau dessin
         </p>
     </button>
 
     <button class="carousel-button" mat-raised-button (click)="drawingService.openCarouselDialog()">
-        <img [src]='"./assets/gallery.svg"' />
+        <img [src]='"../../../assets/gallery.svg"' />
         <p>
             Carrousel de dessins
         </p>

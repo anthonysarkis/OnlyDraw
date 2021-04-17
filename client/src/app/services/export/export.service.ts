@@ -57,7 +57,7 @@ export class ExportService {
     private applySpecialFilter(): void {
         if (this.filter === Filters.DogFilter || this.filter === Filters.GmeFilter) {
             const specialFilter = new Image();
-            specialFilter.src = `./assets/${this.filter}.svg`;
+            specialFilter.src = `../../assets/${this.filter}.svg`;
             specialFilter.onload = () => {
                 this.ctx.drawImage(specialFilter, 0, 0);
             };

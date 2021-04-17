@@ -18,7 +18,7 @@ export class TextService extends Tool {
     textArea: HTMLTextAreaElement;
     currentStyle: FontAttributes;
 
-    constructor(drawingService: DrawingService) {
+    constructor(public drawingService: DrawingService) {
         super(drawingService);
         this.name = ToolNames.Text;
         this.key = ToolKeys.Text;
