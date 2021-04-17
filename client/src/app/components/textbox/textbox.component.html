@@ -9,5 +9,6 @@
         class="textBox"
         (input)="this.textService.resizeTextBox();"
         [ngStyle]="this.textService.currentStyle"
+        [style.top.left]="this.textService.topCorner.x"
     ></textarea>
 </div>

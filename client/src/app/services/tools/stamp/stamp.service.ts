@@ -38,18 +38,18 @@ export class StampService extends Tool {
     constructor(protected drawingService: DrawingService) {
         super(drawingService);
         this.images = [
-            '../../../../../../assets/rose.svg',
-            '../../../../../../assets/whale.svg',
-            '../../../../../../assets/clown-fish.svg',
-            '../../../../../../assets/herb.svg',
-            '../../../../../../assets/leaf.svg',
-            '../../../../../../assets/cloud.svg',
-            '../../../../../../assets/grass.svg',
-            '../../../../../../assets/soil.svg',
-            '../../../../../../assets/dirt.svg',
-            '../../../../../../assets/pickaxe.png',
-            '../../../../../../assets/torch.png',
-            '../../../../../../assets/wood.png',
+            './assets/rose.svg',
+            './assets/whale.svg',
+            './assets/clown-fish.svg',
+            './assets/herb.svg',
+            './assets/leaf.svg',
+            './assets/cloud.svg',
+            './assets/grass.svg',
+            './assets/soil.svg',
+            './assets/dirt.svg',
+            './assets/pickaxe.png',
+            './assets/torch.png',
+            './assets/wood.png',
         ];
         this.name = ToolNames.Stamp;
         this.key = ToolKeys.Stamp;

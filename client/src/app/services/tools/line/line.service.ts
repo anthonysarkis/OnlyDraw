@@ -78,7 +78,7 @@ export class LineService extends Tool {
         event.preventDefault();
         if (event.button !== MouseButton.Left) return;
         const currentPosition = this.getPositionFromMouse(event);
-        this.mouseDownCoord = this.shiftDown ? this.shiftedPosition : currentPosition;
+        this.mouseDownCoord = this.shiftDown && this.pathData.length > 0 ? this.shiftedPosition : currentPosition;
         this.pathData.push(this.mouseDownCoord);
         this.drawAllSegments(this.drawingService.previewCtx);
         this.drawHoveringLine(this.drawingService.previewCtx, this.mouseDownCoord, currentPosition);
@@ -137,6 +137,9 @@ export class LineService extends Tool {
     endDrawing(): void {
         super.endDrawing();
         this.clearPath();
+        this.shiftDown = false;
+        this.pathData = [];
+        this.shiftedPosition = { x: 0, y: 0 };
     }
 
     private onShiftEvent(): void {

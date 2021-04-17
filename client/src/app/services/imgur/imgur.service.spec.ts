@@ -1,5 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { ImgurService } from './imgur.service';
 
 describe('ImgurService', () => {
@@ -9,7 +10,7 @@ describe('ImgurService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
+            imports: [HttpClientTestingModule, MatIconModule],
         });
         httpMock = TestBed.inject(HttpTestingController);
         service = TestBed.inject(ImgurService);

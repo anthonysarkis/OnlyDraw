@@ -26,7 +26,16 @@ describe('ExportDialogComponent', () => {
             'showSnackbar',
         ]);
         TestBed.configureTestingModule({
-            imports: [MatDialogModule, FormsModule, MatInputModule, MatFormFieldModule, BrowserAnimationsModule, MatSelectModule, MatSnackBarModule, MatIconModule],
+            imports: [
+                MatDialogModule,
+                FormsModule,
+                MatInputModule,
+                MatFormFieldModule,
+                BrowserAnimationsModule,
+                MatSelectModule,
+                MatSnackBarModule,
+                MatIconModule,
+            ],
             declarations: [ExportDialogComponent],
             providers: [{ provide: ExportService, useValue: exportSpy }],
         }).compileComponents();

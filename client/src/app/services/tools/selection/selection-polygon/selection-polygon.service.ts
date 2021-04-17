@@ -234,7 +234,7 @@ export class SelectionPolygonService extends Tool {
         this.isInvalidSegment = true;
         const image = new Image();
         const imageScale = 0.1;
-        image.src = '../../../../../../assets/prohibition.png';
+        image.src = './assets/prohibition.png';
         this.drawingService.previewCtx.drawImage(
             image,
             currentPoint.x - (image.width * imageScale) / 2,
@@ -271,6 +271,7 @@ export class SelectionPolygonService extends Tool {
     endDrawing(): void {
         this.selectionService.endDrawing();
         this.lineService.endDrawing();
+        this.lineService.shiftDown = false;
         this.selectionService.isSelected = false;
         this.drawingService.clearCanvas(this.drawingService.previewCtx);
         this.dimensions = { width: 0, height: 0 };

@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CanvasTestHelper } from '@app/classes/canvas-test-helper';
@@ -29,7 +30,7 @@ describe('ExportService', () => {
         drawingService.canvas = canvasTestHelper.canvas;
         imgurSpy = jasmine.createSpyObj('ImgurService', ['uploadImgur']);
         TestBed.configureTestingModule({
-            imports: [MatFormFieldModule, MatSelectModule, HttpClientTestingModule, MatSnackBarModule],
+            imports: [MatFormFieldModule, MatSelectModule, HttpClientTestingModule, MatSnackBarModule, MatIconModule],
             providers: [
                 { provide: DrawingService, useValue: drawingService },
                 { provide: ImgurService, useValue: imgurSpy },

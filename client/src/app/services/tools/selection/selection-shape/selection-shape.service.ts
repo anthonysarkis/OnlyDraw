@@ -74,10 +74,10 @@ export class SelectionShapeService extends Tool {
     }
 
     onKeyDown(event: KeyboardEvent): void {
+        if (event.key === 'Escape') this.endDrawing();
         if (!this.mouseDown) this.onClipboardKeyDown(event);
         if (this.selectionService.isSelected) return;
         this.shapeService.onKeyDown(event);
-        if (event.key === 'Escape') this.endDrawing();
     }
 
     onKeyUp(event: KeyboardEvent): void {

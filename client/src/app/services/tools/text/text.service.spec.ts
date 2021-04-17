@@ -136,4 +136,24 @@ describe('TextService', () => {
         service.onMouseDown(newMouseEvent);
         expect(undoRedoSpy.addCommand).not.toHaveBeenCalled();
     });
+
+    it('should change top corner if text align is center', () => {
+        service.isTextBoxActive = true;
+        service.currentStyle['text-align'] = 'center';
+        service.textArea.style.width = '1px';
+        service.topCorner = { x: 1, y: 0 };
+        service.mouseDown = true;
+        service.resizeTextBox();
+        expect(service.topCorner.x).toBe(0.5);
+    });
+
+    it('should change top corner if text align is right', () => {
+        service.isTextBoxActive = true;
+        service.currentStyle['text-align'] = 'right';
+        service.textArea.style.width = '1px';
+        service.topCorner = { x: 1, y: 0 };
+        service.mouseDown = true;
+        service.resizeTextBox();
+        expect(service.topCorner.x).toBe(0);
+    });
 });

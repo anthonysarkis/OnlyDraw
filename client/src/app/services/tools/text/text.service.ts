@@ -97,9 +97,17 @@ export class TextService extends Tool {
 
     resizeTextBox(): void {
         if (!this.isTextBoxActive) return;
+        const initalWidth = Number(this.textArea.style.width.replace('px', ''));
         this.resetTextArea();
         this.textArea.style.height = this.textArea.scrollHeight + 'px';
         this.textArea.style.width = this.textArea.scrollWidth + 'px';
+        const currentWidth = Number(this.textArea.style.width.replace('px', ''));
+        this.checkAlignment(currentWidth, initalWidth);
+    }
+
+    private checkAlignment(currentWidth: number, initalWidth: number): void {
+        if (this.currentStyle['text-align'] === 'right') this.topCorner.x = this.topCorner.x - (currentWidth - initalWidth);
+        if (this.currentStyle['text-align'] === 'center') this.topCorner.x = this.topCorner.x - (currentWidth - initalWidth) / 2;
     }
 
     private resetTextArea(): void {
