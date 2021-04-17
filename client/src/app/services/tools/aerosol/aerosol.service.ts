@@ -19,7 +19,6 @@ import { MouseButton } from '@app/enums/mouse-buttons';
 import { ToolKeys } from '@app/enums/tools-keys';
 import { ToolNames } from '@app/enums/tools-names';
 import { DrawingService } from '@app/services/drawing/drawing.service';
-import { MathService } from '@app/services/math/math.service';
 
 @Injectable({
     providedIn: 'root',
@@ -60,7 +59,7 @@ export class AerosolService extends Tool {
         this.aerosolDiameter = Math.min(Math.max(MIN_AEROSOL_DIAMETER, newDiameter), MAX_AEROSOL_DIAMETER);
     }
 
-    constructor(protected drawingService: DrawingService, private mathService: MathService) {
+    constructor(protected drawingService: DrawingService) {
         super(drawingService);
         this.name = ToolNames.Aerosol;
         this.key = ToolKeys.Aerosol;
@@ -178,7 +177,9 @@ export class AerosolService extends Tool {
     private isPointInCanvas(point: Vec2): boolean {
         const canvasWidth = this.drawingService.canvas.width;
         const canvasHeight = this.drawingService.canvas.height;
-        return this.mathService.isPointInCanvas(point, canvasWidth, canvasHeight);
+        const isPointPositive = point.x > 0 && point.y > 0;
+        const isPointSmallerThanCanvas = point.x < canvasWidth && point.y < canvasHeight;
+        return isPointPositive && isPointSmallerThanCanvas;
     }
 
     private getRandomNumber(min: number, max: number): number {

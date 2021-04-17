@@ -3,7 +3,6 @@ import { AerosolState } from '@app/classes/state/aerosol-state';
 import { Vec2 } from '@app/classes/vec2';
 import { ColorService } from '@app/services/color/color.service';
 import { DrawingService } from '@app/services/drawing/drawing.service';
-import { MathService } from '@app/services/math/math.service';
 import { AerosolService } from '@app/services/tools/aerosol/aerosol.service';
 import { AerosolCommand } from './aerosol-command';
 import { ToolCommand } from './tool-command';
@@ -29,7 +28,7 @@ describe('AerosolCommand', () => {
             fullPathData: [],
             pointSize: 0,
         } as AerosolState;
-        const toolStub = new AerosolStub({} as DrawingService, {} as MathService);
+        const toolStub = new AerosolStub({} as DrawingService);
         command = new AerosolCommand(toolStub, aerosolState, colorService);
         // tslint:disable: no-any
         spyOn<any>(command['tool'], 'clearOffscreenContext').and.callFake(() => {

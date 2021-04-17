@@ -8,8 +8,8 @@
 </mat-slider> <span>{{ lineThickness }} px</span>
 
 <mat-button-toggle-group  (change) = "onRadioButtonChange($event.value)" aria-label="Select an option">
-    <mat-button-toggle [checked] ="this.ellipseService.isBordered && !this.ellipseService.isFilled" value="0" matTooltip="Contour"><img [src]="'../../../../assets/ellipse-contour.svg'"></mat-button-toggle>
-    <mat-button-toggle [checked] ="!this.ellipseService.isBordered && this.ellipseService.isFilled" value="1" matTooltip="Rempli"><img [src]="'../../../../assets/ellipse-filled.svg'"></mat-button-toggle>
-    <mat-button-toggle [checked] ="this.ellipseService.isBordered && this.ellipseService.isFilled" value="2" matTooltip="Contour et rempli"><img [src]="'../../../../assets/ellipse.svg'"></mat-button-toggle>
+    <mat-button-toggle [checked] ="this.ellipseService.isBordered && !this.ellipseService.isFilled" value="0" matTooltip="Contour"><img [src]="'./assets/ellipse-contour.svg'"></mat-button-toggle>
+    <mat-button-toggle [checked] ="!this.ellipseService.isBordered && this.ellipseService.isFilled" value="1" matTooltip="Rempli"><img [src]="'./assets/ellipse-filled.svg'"></mat-button-toggle>
+    <mat-button-toggle [checked] ="this.ellipseService.isBordered && this.ellipseService.isFilled" value="2" matTooltip="Contour et rempli"><img [src]="'./assets/ellipse.svg'"></mat-button-toggle>
 </mat-button-toggle-group>
 

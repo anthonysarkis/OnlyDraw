@@ -1,6 +1,6 @@
 <div
     class="main"
-    [hidden]="!this.selectionService.isSelected || this.selectionService.isBorderSelected"
+    [hidden]="!this.selectionService.isSelected"
     [style.width.px]="this.selectionService.currentDimensions.width"
     [style.height.px]="this.selectionService.currentDimensions.height"
     [style.top.px]="this.selectionService.currentCorner.y"
@@ -98,15 +98,15 @@
         [style.left.px]="this.selectionService.drawingService.canvas?.width + this.selectionService.drawingService.canvas?.getBoundingClientRect().left + 5"
         >
     </div>
-    <div class="dimensions-panel"
-        *ngIf="selectionService.isBorderSelected"
-        [style.top.px]="this.resizeService.previewCorners[0].y - 70"
-        [style.left.px]="this.resizeService.previewCorners[0].x - 85">
-        <p>Largeur: {{ this.resizeService.previewDimensions.width }}</p>
-        <p>Hauteur: {{ this.resizeService.previewDimensions.height }}</p>
-    </div>
 </div>
 
+<div class="dimensions-panel"
+    *ngIf="selectionService.isBorderSelected"
+    [style.top.px]="this.resizeService.previewCorners[0].y - 70"
+    [style.left.px]="this.resizeService.previewCorners[0].x - 85">
+    <p>Largeur: {{ this.resizeService.previewDimensions.width }}</p>
+    <p>Hauteur: {{ this.resizeService.previewDimensions.height }}</p>
+</div>
 
 
 <div
@@ -123,7 +123,7 @@
 
 <div 
     [hidden]="!this.showPreviewCanvas"
-    class="preview-main preview-div" 
+    class="main preview-div" 
     [hidden]="!this.selectionService.isSelected"
     [style.height.px]="resizeService.previewDimensions.height"
     [style.width.px]="resizeService.previewDimensions.width" 

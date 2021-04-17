@@ -78,10 +78,4 @@ export class MathService {
         if (numberOfSides >= Constants.TEN_SIDES) return Constants.TEN_SIDES_COEFFICIENT;
         return Constants.FIRST_COEFFICIENT * Math.pow(numberOfSides, 2) - Constants.SECOND_COEFFICIENT * numberOfSides + Constants.INTERCEPT;
     }
-
-    isPointInCanvas(point: Vec2, canvasWidth: number, canvasHeight: number): boolean {
-        const isPointPositive = point.x > 0 && point.y > 0;
-        const isPointSmallerThanCanvas = point.x < canvasWidth && point.y < canvasHeight;
-        return isPointPositive && isPointSmallerThanCanvas;
-    }
 }

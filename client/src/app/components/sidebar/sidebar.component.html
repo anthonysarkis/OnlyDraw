@@ -10,7 +10,7 @@
                     <button mat-raised-button 
                     [matTooltip]="tool.name + ' (' + (tool.key | uppercase) + ')'" matTooltipPosition="right"
                     (click)="onSelectTool(tool)" [ngClass]="{ active: tool === toolService.selectedTool.getValue() }">
-                        <img [src]="'../../../assets/' + (tool.name | lowercase) + '.svg'" />
+                        <img [src]="'./assets/' + (tool.name | lowercase) + '.svg'" />
                     </button>
                 </span>
             </span>
@@ -19,13 +19,13 @@
                     <button mat-raised-button 
                     [matTooltip]="tool.name + ' (' + (tool.key | uppercase) + ')'" matTooltipPosition="right"
                     (click)="onSelectTool(tool)" [ngClass]="{ active: tool === toolService.selectedTool.getValue() }">
-                        <img [src]="'../../../assets/' + (tool.name | lowercase) + '.svg'" />
+                        <img [src]="'./assets/' + (tool.name | lowercase) + '.svg'" />
                     </button>
                 </span>
             </span>
             <!-- Select all -->
             <button mat-raised-button matTooltip="Tout sélectionner (Ctrl + A)" matTooltipPosition="right" (click)="selectAll()">
-                <img [src]="'../../../assets/select-all.svg'" />
+                <img [src]="'./assets/select-all.svg'" />
             </button>
         </div>
 
@@ -35,13 +35,13 @@
                 <!-- Reset canvas -->
                 <button mat-raised-button matTooltip="Créer un nouveau dessin (Ctrl + O)" matTooltipPosition="right"
                     (click)="onResetCanvas()">
-                    <img [src]="'../../../assets/new.svg'" />
+                    <img [src]="'./assets/new.svg'" />
                 </button>
                 
                 <!-- Carousel -->
                 <button mat-raised-button matTooltip="Carousel de dessin (Ctrl + G)" matTooltipPosition="right"
                     (click)="openCarousel()">
-                    <img [src]='"../../../assets/gallery.svg"' />
+                    <img [src]='"./assets/gallery.svg"' />
                 </button>
             </span>
 
@@ -49,13 +49,13 @@
                 <!-- Save -->
                 <button mat-raised-button matTooltip="Sauvegarder sur serveur (Ctrl + S)" matTooltipPosition="right"
                     (click)="openSaveDialog()">
-                    <img [src]="'../../../assets/save.svg'" />
+                    <img [src]="'./assets/save.svg'" />
                 </button>
 
                 <!-- Export -->
                 <button mat-raised-button matTooltip="Exporter un dessin (Ctrl + E)" matTooltipPosition="right"
                     (click)="openExportCanvas()">
-                    <img [src]='"../../../assets/upload.svg"' />
+                    <img [src]='"./assets/upload.svg"' />
                 </button>
 
             </span>
@@ -85,7 +85,7 @@
         </div>
         <!-- Home -->
         <button class="home" mat-raised-button routerLink="/home" matTooltip="Accueil" matTooltipPosition="right">
-            <img [src]="'../../../assets/home.svg'" />
+            <img [src]="'./assets/home.svg'" />
         </button>
     </div>
 </div>

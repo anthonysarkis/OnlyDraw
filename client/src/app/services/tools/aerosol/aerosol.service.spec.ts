@@ -11,7 +11,6 @@ import {
 } from '@app/classes/constants';
 import { Vec2 } from '@app/classes/vec2';
 import { MouseButton } from '@app/enums/mouse-buttons';
-import { MathService } from '@app/services/math/math.service';
 import { AerosolService } from './aerosol.service';
 
 describe('AerosolService', () => {
@@ -28,14 +27,10 @@ describe('AerosolService', () => {
     // tslint:disable: no-any
     let startSpraySpy: jasmine.Spy<any>;
     let endSpraySpy: jasmine.Spy<any>;
-    let mathServiceStub: MathService;
 
     beforeEach(() => {
-        mathServiceStub = new MathService();
-
         TestBed.configureTestingModule({
             imports: [MatSliderModule],
-            providers: [{ provide: MathService, useValue: mathServiceStub}],
         });
         service = TestBed.inject(AerosolService);
 

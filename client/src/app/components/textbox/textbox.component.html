@@ -12,15 +12,3 @@
         [style.top.left]="this.textService.topCorner.x"
     ></textarea>
 </div>
-
-<div 
-class="bottom-mask" 
-[style.left.px]="this.textService.drawingService.canvas?.getBoundingClientRect().left" 
-[style.top.px]="this.textService.drawingService.canvas?.height + 5">
-</div>
-<div 
-class="right-mask" 
-[style.top.px]="1" 
-[style.left.px]="this.textService.drawingService.canvas?.width + this.textService.drawingService.canvas?.getBoundingClientRect().left + 5"
->
-</div>
