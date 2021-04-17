@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16" width="24" height="16">
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: none } 
+		.shp1 { fill: #0b6c91 } 
+	</style>
+	<g id="Icons">
+		<g id="Outlined">
+			<g id="File">
+				<g id="Outlined-/-File-/-cloud_upload">
+					<g id="Layer">
+						<path id="Path" class="shp0" d="M0 -4L24 -4L24 20L0 20L0 -4Z" />
+						<path id="🔹-Icon-Color" fill-rule="evenodd" class="shp1" d="M24 11C24 13.76 21.76 16 19 16L6 16C2.69 16 0 13.31 0 10C0 6.91 2.34 4.36 5.35 4.04C6.6 1.64 9.11 0 12 0C15.64 0 18.67 2.59 19.35 6.04C21.95 6.22 24 8.36 24 11ZM22 11C22 9.45 20.78 8.14 19.22 8.04L17.69 7.93L17.39 6.43C16.88 3.86 14.62 2 12 2C9.94 2 8.08 3.14 7.13 4.97L6.63 5.92L5.56 6.03C3.53 6.24 2 7.95 2 10C2 12.21 3.79 14 6 14L19 14C20.65 14 22 12.65 22 11ZM12 5L16 9L13.45 9L13.45 12L10.55 12L10.55 9L8 9L12 5Z" />
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>
