@@ -70,6 +70,12 @@ describe('TextComponent', () => {
         expect(textServiceSpy.currentStyle['font-family']).toBe('Arial');
     });
 
+    it('shouldnt change font family if fonts doesnt include font', () => {
+        component.font = 'khalilJibran';
+        component.onFontFamilyChange();
+        expect(textServiceSpy.currentStyle['font-family']).not.toBe('khalilJibran');
+    });
+
     it('should change font weight on font weight change', () => {
         component.onFontWeightChange('bold');
         expect(textServiceSpy.currentStyle['font-weight']).toBe('bold');

@@ -43,13 +43,19 @@ export class StampService extends Tool {
             './assets/clown-fish.svg',
             './assets/herb.svg',
             './assets/leaf.svg',
-            './assets/cloud.svg',
             './assets/grass.svg',
+            './assets/rocket.png',
+            './assets/diamond.png',
+            './assets/moon.png',
+            './assets/cloud.svg',
             './assets/soil.svg',
             './assets/dirt.svg',
             './assets/pickaxe.png',
             './assets/torch.png',
             './assets/wood.png',
+            './assets/circle-finger.png',
+            './assets/hand.png',
+            './assets/harambe.png',
         ];
         this.name = ToolNames.Stamp;
         this.key = ToolKeys.Stamp;
@@ -123,6 +129,7 @@ export class StampService extends Tool {
         );
         ctx.restore();
     }
+
     private degreeToRadian(currentAngle: number): number {
         return currentAngle / (MAX_ANGLE_DEGREE / 2 / Math.PI);
     }

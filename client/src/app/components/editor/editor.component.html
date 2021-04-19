@@ -1,6 +1,6 @@
 <div class="container mat-app-background" [ngClass]="{'dark-theme-mode' : isDark}">
   <div class="sidebar">
-    <app-sidebar id="sidebar" (darkModeChanged)="onThemeChange($event)"></app-sidebar>
+    <app-sidebar id="sidebar"></app-sidebar>
     <br>
     <span class="options" matTooltip="Lecteur de musique" matTooltipPosition="above">
       <mat-icon>music_note</mat-icon>Musique<mat-slide-toggle [(ngModel)]="isMusicShown"></mat-slide-toggle>

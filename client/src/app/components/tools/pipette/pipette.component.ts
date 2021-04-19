@@ -7,7 +7,8 @@ import { PipetteService } from '@app/services/tools/pipette/pipette.service';
 })
 export class PipetteComponent implements AfterViewInit {
     @ViewChild('dropperViewer') private canvas: ElementRef<HTMLCanvasElement>;
-    constructor(private pipetteService: PipetteService) {}
+
+    constructor(public pipetteService: PipetteService) {}
 
     ngAfterViewInit(): void {
         this.pipetteService.dropperVisualisation = this.canvas.nativeElement.getContext('2d') as CanvasRenderingContext2D;

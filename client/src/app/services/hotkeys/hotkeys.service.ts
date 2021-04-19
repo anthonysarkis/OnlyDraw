@@ -63,7 +63,7 @@ export class HotkeysService {
     getTool(event: KeyboardEvent): void {
         if (this.isAccessoryCalled(event)) return;
         if (this.isHotkeysDisabled || this.isShortcutCalled(event, true) || !this.keyBindings.has(event.key.toLowerCase())) return;
-        const tool = this.keyBindings.get(event.key) as Tool;
+        const tool = this.keyBindings.get(event.key.toLowerCase()) as Tool;
         this.toolsService.selectTool(tool);
     }
 
@@ -77,7 +77,7 @@ export class HotkeysService {
     }
 
     private isAccessoryCalled(event: KeyboardEvent): boolean {
-        this.selectionService.magnetism.gridService.onKeyDown(event);
+        if (this.toolsService.selectedTool.getValue().key !== ToolKeys.Grid) this.selectionService.magnetism.gridService.onKeyDown(event);
         if (!event.ctrlKey && event.key === ToolKeys.Grid) {
             this.selectionService.magnetism.gridService.toggleGrid();
             return true;

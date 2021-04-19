@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { CanvasTestHelper } from '@app/classes/canvas-test-helper';
+import { Rectangle } from '@app/classes/shapes/rectangle';
 import { ColorService } from '@app/services/color/color.service';
 import { DrawingService } from '@app/services/drawing/drawing.service';
 import { UndoRedoService } from '@app/services/undo-redo/undo-redo.service';
@@ -23,6 +24,23 @@ describe('ImageHelperService', () => {
 
     it('should be created', () => {
         expect(service).toBeTruthy();
+    });
+
+    it('getClippedImage should call', () => {
+        const image = new Image(2, 2);
+        const shape = new Rectangle(1, 1);
+        const dimensions = { width: 2, height: 2 };
+        service.getClippedImage(image, shape, dimensions);
+        expect(shape.width).toBe(dimensions.width);
+    });
+
+    it('drawOnBaseCtx', () => {
+        const image = {} as HTMLImageElement;
+        const dimensions = { width: 2, height: 2 };
+        // tslint:disable-next-line: no-any
+        const drawImageSpy = spyOn<any>(drawingService.baseCtx, 'drawImage');
+        service.drawOnBaseCtx(image, { x: 1, y: 1 }, dimensions);
+        expect(drawImageSpy).toHaveBeenCalled();
     });
 
     it('getting selected image should get the image URL and image data with defined dimensions', () => {

@@ -21,6 +21,7 @@ import { ToolKeys } from '@app/enums/tools-keys';
 import { ToolNames } from '@app/enums/tools-names';
 import { ColorService } from '@app/services/color/color.service';
 import { DrawingService } from '@app/services/drawing/drawing.service';
+import { MathService } from '@app/services/math/math.service';
 
 @Injectable({
     providedIn: 'root',
@@ -32,11 +33,13 @@ export class PipetteService extends Tool {
     selectedColor: Color;
     backgroundImage: HTMLImageElement;
     newCanvas: HTMLCanvasElement;
+    mouseOnCanvas: boolean;
     ctx: CanvasRenderingContext2D;
     private dropperColorPosition: Vec2;
 
-    constructor(protected drawingService: DrawingService, private colorService: ColorService) {
+    constructor(protected drawingService: DrawingService, private colorService: ColorService, private mathService: MathService) {
         super(drawingService);
+        this.mouseOnCanvas = true;
         this.name = ToolNames.Pipette;
         this.key = ToolKeys.Pipette;
         this.backgroundImage = new Image();
@@ -56,7 +59,12 @@ export class PipetteService extends Tool {
 
     onMouseMove(event: MouseEvent): void {
         this.mouseDownCoord = this.getPositionFromMouse(event);
+        if (!this.mathService.isPointInCanvas(this.mouseDownCoord, this.drawingService.canvas.width, this.drawingService.canvas.height)) {
+            this.mouseOnCanvas = false;
+            return;
+        }
 
+        this.mouseOnCanvas = true;
         this.drawEmptyBackground();
         this.newCanvas = this.drawingService.canvas.cloneNode(true) as HTMLCanvasElement;
         this.drawCanvasWhiteBackground();

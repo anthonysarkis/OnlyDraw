@@ -98,7 +98,15 @@
         [style.left.px]="this.selectionService.drawingService.canvas?.width + this.selectionService.drawingService.canvas?.getBoundingClientRect().left + 5"
         >
     </div>
+    <div class="dimensions-panel"
+        *ngIf="selectionService.isBorderSelected"
+        [style.top.px]="this.resizeService.previewCorners[0].y - 70"
+        [style.left.px]="this.resizeService.previewCorners[0].x - 85">
+        <p>Largeur: {{ this.resizeService.previewDimensions.width }}</p>
+        <p>Hauteur: {{ this.resizeService.previewDimensions.height }}</p>
+    </div>
 </div>
+
 
 
 <div

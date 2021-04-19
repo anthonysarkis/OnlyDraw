@@ -158,6 +158,7 @@ export class SelectionPolygonService extends Tool {
             this.cancelSelection(event);
             return true;
         }
+        this.selectionService.isBorderSelected = false;
         this.mouseDown = false;
         return false;
     }
@@ -273,6 +274,7 @@ export class SelectionPolygonService extends Tool {
         this.lineService.endDrawing();
         this.lineService.shiftDown = false;
         this.selectionService.isSelected = false;
+        this.selectionService.isBorderSelected = false;
         this.drawingService.clearCanvas(this.drawingService.previewCtx);
         this.dimensions = { width: 0, height: 0 };
         this.drawingService.previewCtx.setLineDash([]);

@@ -28,6 +28,12 @@ describe('CarouselService', () => {
             new Observable<void>((observer) => observer.next()),
         );
         drawServiceSpy.undoRedoService = undoRedoServiceSpy;
+        drawServiceSpy.canvas = {
+            toDataURL(): void {
+                return;
+            },
+        } as HTMLCanvasElement;
+        drawServiceSpy.canvasImage = new Image(0, 0);
 
         TestBed.configureTestingModule({
             imports: [HttpClientModule, MatSnackBarModule, HttpClientTestingModule, BrowserAnimationsModule],
@@ -85,6 +91,7 @@ describe('CarouselService', () => {
 
     it('should call get image when loading image', async(() => {
         service.images.push({ name: 'Hello', tags: ['hello'], _id: 'foss' });
+        spyOn<any>(drawServiceSpy.canvas, 'toDataURL');
         service.onLoadImage(0);
         expect(communicationServiceSpy.getImage).toHaveBeenCalled();
     }));
@@ -95,6 +102,7 @@ describe('CarouselService', () => {
         communicationServiceSpy.getImage.and.returnValue(throwError({ status: 404 }));
         communicationServiceSpy.getImagesByTag.and.returnValue(throwError({ status: 404 }));
         communicationServiceSpy.getAllImages.and.returnValue(throwError({ status: 404 }));
+        spyOn<any>(drawServiceSpy.canvas, 'toDataURL');
         service.getImagesByTag();
         service.getAllImages();
         service.onLoadImage(0);

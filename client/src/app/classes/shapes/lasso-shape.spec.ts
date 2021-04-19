@@ -50,9 +50,9 @@ describe('Ellipse', () => {
             { x: 1, y: 1 },
         ];
         const pathData = lassoShape.pathData;
-        lassoShape.previewBorder(baseCtxStub, { x: 0, y: 0 });
-        lassoShape.previewContour(baseCtxStub, { x: 0, y: 0 });
-        lassoShape.previewFill(baseCtxStub, { x: 0, y: 0 });
+        lassoShape.previewBorder();
+        lassoShape.previewContour();
+        lassoShape.previewFill();
         expect(spyFill).not.toHaveBeenCalled();
         expect(spyStroke).not.toHaveBeenCalled();
         expect(pathData).toEqual(lassoShape.pathData);

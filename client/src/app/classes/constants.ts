@@ -51,7 +51,7 @@ export const PANEL_HEIGHT = 250;
 
 // Dialogs
 export const DIALOG_WIDTH = '70%';
-export const DIALOG_HEIGHT = '95%';
+export const DIALOG_HEIGHT = '98%';
 export const CAROUSEL_WIDTH = '1200px';
 export const CAROUSEL_HEIGHT = '720px';
 
@@ -93,7 +93,7 @@ export const DEFAULT_ERASER_THICKNESS = 10;
 // Polygon
 export const MIN_NUMBER_OF_SIDES = 3;
 export const MAX_NUMBER_OF_SIDES = 12;
-export const DEFAULT_NUMBER_OF_SIDES = 6;
+export const DEFAULT_NUMBER_OF_SIDES = 5;
 export const TEN_SIDES = 10;
 export const TEN_SIDES_COEFFICIENT = 0.52;
 export const FIRST_COEFFICIENT = 0.0096;
@@ -103,12 +103,12 @@ export const INTERCEPT = 1.1529;
 // Bucket
 export const MIN_TOLERANCE = 0;
 export const MAX_TOLERANCE = 100;
-export const DEFAULT_TOLERANCE = 25;
+export const DEFAULT_TOLERANCE = 0;
 export const MAX_COLOR_DISTANCE = 765;
 export const HALF_RGB = 128;
 export const COLOR_COEFFICIENT_THREE = 3;
 export const COLOR_COEFFICIENT_FOUR = 4;
-export const HUNDRED_PERCEENT = 100;
+export const HUNDRED_PERCENT = 100;
 
 // Grid
 export const DEFAULT_SQUARE_SIZE = 100;

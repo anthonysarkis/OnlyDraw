@@ -5,6 +5,7 @@ import { Rectangle } from '@app/classes/shapes/rectangle';
 import { ArrowKeys } from '@app/enums/arrow-keys';
 import { ClipboardKeys } from '@app/enums/clipboard-keys';
 import { MouseButton } from '@app/enums/mouse-buttons';
+import { ShapeService } from '@app/services/tools/shape/shape.service';
 import { SelectionShapeService } from './selection-shape.service';
 
 describe('SelectionShapeService', () => {
@@ -13,16 +14,23 @@ describe('SelectionShapeService', () => {
     let mouseEvent: MouseEvent;
 
     // tslint:disable: no-any
-    let onKeyUpSpy: jasmine.Spy<any>;
     let cancelSelectionSpy: jasmine.Spy<any>;
 
     let baseCtxStub: CanvasRenderingContext2D;
     let previewCtxStub: CanvasRenderingContext2D;
     let canvasTestHelper: CanvasTestHelper;
     let canvasStub: HTMLCanvasElement;
+    let shapeServiceSpy: jasmine.SpyObj<ShapeService>;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({});
+        const shapeSize = 5;
+        shapeServiceSpy = jasmine.createSpyObj('ShapeService', ['onKeyUp', 'restoreContextStyle', 'onKeyDown', 'onMouseMove', 'onMouseDown']);
+        const shape = new Rectangle(shapeSize, shapeSize);
+        shapeServiceSpy.mainShape = shape;
+        shapeServiceSpy.alternateShape = shape;
+        TestBed.configureTestingModule({
+            providers: [{ provide: ShapeService, useValue: shapeServiceSpy }],
+        });
         service = TestBed.inject(SelectionShapeService);
 
         mouseEvent = ({
@@ -39,22 +47,17 @@ describe('SelectionShapeService', () => {
         previewCtxStub = canvasStub.getContext('2d') as CanvasRenderingContext2D;
 
         // tslint:disable: no-string-literal
-        onKeyUpSpy = spyOn<any>(service['shapeService'], 'onKeyUp');
         cancelSelectionSpy = spyOn<any>(service, 'cancelSelection').and.callThrough();
-
+        spyOn<any>(service['selectionService'], 'setInitialProperties');
         service['drawingService'].baseCtx = baseCtxStub;
         service['drawingService'].previewCtx = previewCtxStub;
         service['drawingService'].canvas = canvasStub;
         const canvasSize = 250;
         canvasStub.width = canvasSize;
         canvasStub.height = canvasSize;
-        const shapeSize = 5;
-
-        service['shapeService']['mainShape'] = new Rectangle(shapeSize, shapeSize);
-        service['shapeService']['alternateShape'] = new Rectangle(shapeSize, shapeSize);
         service['selectionService'].canvas = canvasStub;
         service['selectionService'].ctx = previewCtxStub;
-        service['selectionService'].shape = new Rectangle(shapeSize, shapeSize);
+        service['selectionService'].shape = shape;
         service['selectionService'].currentDimensions = { width: 2, height: 2 };
         service['selectionService'].selectedImage = new Image(0, 0);
         spyOn<any>(service['selectionService']['drawingService'].baseCtx, 'drawImage');
@@ -66,13 +69,13 @@ describe('SelectionShapeService', () => {
 
     it('onKeyUp should call shapeService.onKeyUp', () => {
         service.onKeyUp(keyboardEvent);
-        expect(onKeyUpSpy).toHaveBeenCalled();
+        expect(shapeServiceSpy.onKeyUp).toHaveBeenCalled();
     });
 
     it('onKeyUp should not call shapeService.onKeyUp if isSelected is true', () => {
         service['selectionService'].isSelected = true;
         service.onKeyUp(keyboardEvent);
-        expect(onKeyUpSpy).not.toHaveBeenCalled();
+        expect(shapeServiceSpy.onKeyUp).not.toHaveBeenCalled();
     });
     it('onMouseDown should call setContextStyle if isSelected is true', () => {
         service['selectionService'].isSelected = true;
@@ -121,16 +124,14 @@ describe('SelectionShapeService', () => {
 
     it('onKeyDown should call shapeService.onKeyDown if isSelected is false', () => {
         service['selectionService'].isSelected = false;
-        const onKeyDownSpy = spyOn<any>(service['shapeService'], 'onKeyDown');
         service.onKeyDown(keyboardEvent);
-        expect(onKeyDownSpy).toHaveBeenCalled();
+        expect(shapeServiceSpy.onKeyDown).toHaveBeenCalled();
     });
 
     it('onKeyDown should not call shapeService.onKeyDown if isSelected is true', () => {
         service['selectionService'].isSelected = true;
-        const onKeyDownSpy = spyOn<any>(service['shapeService'], 'onKeyDown');
         service.onKeyDown(keyboardEvent);
-        expect(onKeyDownSpy).not.toHaveBeenCalled();
+        expect(shapeServiceSpy.onKeyDown).not.toHaveBeenCalled();
     });
 
     it('onKeyDown should call endDrawing if isSelected is false and key is Escape', () => {
@@ -150,22 +151,19 @@ describe('SelectionShapeService', () => {
 
     it('onMouseMove should not call shapeService.onMouseMove if isSelected is true or mouseDown is false', () => {
         service.mouseDown = false;
-        const spy = spyOn<any>(service['shapeService'], 'onMouseMove');
         service.onMouseMove(mouseEvent);
-        expect(spy).not.toHaveBeenCalled();
+        expect(shapeServiceSpy.onMouseMove).not.toHaveBeenCalled();
     });
 
     it('onMouseMove should call shapeService.onMouseMove if isSelected is false and mouseDown is true', () => {
         service.mouseDown = true;
         service['selectionService'].isSelected = false;
-        const onMouseMoveSpy = spyOn<any>(service['shapeService'], 'onMouseMove');
         service.onMouseMove(mouseEvent);
-        expect(onMouseMoveSpy).toHaveBeenCalled();
+        expect(shapeServiceSpy.onMouseMove).toHaveBeenCalled();
     });
     it('endDrawing should call restoreContextStyle', () => {
-        const restoreContextStyleSpy = spyOn<any>(service, 'restoreContextStyle').and.callThrough();
         service.endDrawing();
-        expect(restoreContextStyleSpy).toHaveBeenCalled();
+        expect(shapeServiceSpy.restoreContextStyle).toHaveBeenCalled();
     });
     it('onMouseUp should set shape to alternateShape if isAlternateShape is true', () => {
         service['selectionService'].isSelected = false;

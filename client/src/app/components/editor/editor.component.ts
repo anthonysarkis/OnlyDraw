@@ -24,10 +24,6 @@ export class EditorComponent implements AfterViewInit {
         this.isMusicShown = false;
     }
 
-    onThemeChange(darkMode: boolean): void {
-        this.isDark = darkMode;
-    }
-
     ngAfterViewInit(): void {
         this.setDimensions();
         if (!localStorage.getItem(CANVAS_NAME)) {

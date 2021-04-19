@@ -48,7 +48,7 @@ describe('BucketCommand', () => {
     it('save state should save the right state', () => {
         command.saveState();
         expect(command['savedState']).toEqual(
-            new BucketState(1, command['colorService'].primaryColor, command['colorService'].secondaryColor, command['tool'].newImageData),
+            new BucketState(1, command['colorService'].primaryColor, command['colorService'].secondaryColor, command['tool'].imageDataToPut),
         );
     });
 

@@ -20,6 +20,8 @@ export class SelectionShapeService extends Tool {
     private corners: Vec2[];
     private dimensions: Dimensions;
     shape: Shape;
+    mainPreviewContour: () => void;
+    alternatePreviewContour: () => void;
 
     constructor(
         protected drawingService: DrawingService,
@@ -35,6 +37,8 @@ export class SelectionShapeService extends Tool {
             { x: 0, y: 0 },
             { x: 0, y: 0 },
         ];
+        this.mainPreviewContour = this.shapeService.mainShape.previewContour;
+        this.alternatePreviewContour = this.shapeService.alternateShape.previewContour;
     }
 
     initializeProperties(): void {
@@ -45,6 +49,7 @@ export class SelectionShapeService extends Tool {
     onMouseDown(event: MouseEvent): void {
         if (this.selectionService.isSelected) this.cancelSelection(event);
         this.mouseDown = event.button === MouseButton.Left;
+        this.assignCoutourMethods();
         this.shapeService.isBordered = true;
         this.shapeService.onMouseDown(event);
         this.corners[START] = this.getPositionFromMouse(event);
@@ -91,6 +96,7 @@ export class SelectionShapeService extends Tool {
         this.selectionService.isSelected = false;
         this.drawingService.clearCanvas(this.drawingService.previewCtx);
         this.dimensions = { width: 0, height: 0 };
+        this.restoreCoutourMethods();
         this.resetShapeDimensions();
         this.restoreContextStyle();
     }
@@ -209,5 +215,19 @@ export class SelectionShapeService extends Tool {
         this.shapeService.restoreContextStyle();
         this.drawingService.baseCtx.restore();
         this.drawingService.previewCtx.restore();
+    }
+
+    private assignCoutourMethods(): void {
+        this.shapeService.mainShape.previewContour = () => {
+            return;
+        };
+        this.shapeService.alternateShape.previewContour = () => {
+            return;
+        };
+    }
+
+    private restoreCoutourMethods(): void {
+        this.shapeService.mainShape.previewContour = this.mainPreviewContour;
+        this.shapeService.alternateShape.previewContour = this.alternatePreviewContour;
     }
 }

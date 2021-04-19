@@ -1,5 +1,5 @@
 div {
-    text-align:center;
+    text-align: center;
 
     h1 {
         font-size: 30px;
@@ -10,9 +10,15 @@ div {
         display: flex;
         justify-content: space-between;
         font-size: 18px;
+        margin-bottom: 0;
+
+        mat-form-field {
+            margin-bottom: 0;
+        }
     }
 
     h3 {
+        margin-top: 0;
         font-size: large;
         font-weight: bold;
     }
@@ -49,6 +55,10 @@ div {
     border: 2px solid black;
 }
 
+.confirm-dialog {
+    z-index: 70;
+}
+
 .confirm-dialog-content {
     font-size: larger;
     border: 10px solid #3F51B5 !important;
@@ -74,11 +84,21 @@ mat-dialog-actions {
     margin-top: 20px;
 }
 
-#popUp{
+#pop-up{
     display:table;
     margin: 0 auto;
     width: 40%;
     height: 30%;
-    background:#ccc;
+    background:white;
+    z-index: 2;
     color:#3F51B5;
+}
+
+.backdrop {
+    z-index: 1;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
 }

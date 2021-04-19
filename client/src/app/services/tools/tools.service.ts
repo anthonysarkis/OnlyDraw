@@ -31,14 +31,14 @@ export class ToolsService {
         lineService: LineService,
         rectangleService: RectangleService,
         aerosolService: AerosolService,
+        bucketService: BucketService,
         pipetteService: PipetteService,
+        stampService: StampService,
+        textService: TextService,
         polygonService: PolygonService,
         selectionRectangleService: SelectionRectangleService,
         selectionEllipseService: SelectionEllipseService,
-        stampService: StampService,
-        textService: TextService,
         selectionPolygonService: SelectionPolygonService,
-        bucketService: BucketService,
         gridService: GridService,
     ) {
         this.tools = [
@@ -50,13 +50,13 @@ export class ToolsService {
             lineService,
             aerosolService,
             bucketService,
-            selectionRectangleService,
-            selectionEllipseService,
-            selectionPolygonService,
-            gridService,
             stampService,
             textService,
             pipetteService,
+            gridService,
+            selectionRectangleService,
+            selectionEllipseService,
+            selectionPolygonService,
         ];
         this.selectedTool = new BehaviorSubject(this.tools[0]);
     }

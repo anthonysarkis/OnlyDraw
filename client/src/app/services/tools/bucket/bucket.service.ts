@@ -3,7 +3,7 @@ import { BucketCommand } from '@app/classes/commands/bucket-command';
 import {
     COLOR_DATA_SIZE,
     DEFAULT_TOLERANCE,
-    HUNDRED_PERCEENT,
+    HUNDRED_PERCENT,
     MAX_COLOR_DISTANCE,
     MAX_RGB,
     MAX_TOLERANCE,
@@ -23,7 +23,8 @@ import { DrawingService } from '@app/services/drawing/drawing.service';
     providedIn: 'root',
 })
 export class BucketService extends Tool {
-    newImageData: ImageData;
+    private oldImageData: ImageData;
+    imageDataToPut: ImageData;
     private clickedColor: Uint8ClampedArray;
     private newColor: Uint8ClampedArray;
     private tolerance: number;
@@ -48,9 +49,11 @@ export class BucketService extends Tool {
     onMouseDown(event: MouseEvent): void {
         this.mouseDown = event.button === MouseButton.Left || event.button === MouseButton.Right;
         if (!this.mouseDown) return;
+        this.drawingService.clearCanvas(this.drawingService.previewCtx);
         this.mouseDownCoord = this.getPositionFromMouse(event);
         this.setColors();
         this.updateDimensions();
+        this.initializeData();
         if (event.button === MouseButton.Right) {
             this.nonAdjacentChange();
         }
@@ -65,25 +68,31 @@ export class BucketService extends Tool {
         this.drawingService.saveCanvas();
     }
 
-    private nonAdjacentChange(): void {
-        this.buildNewData(this.drawingService.baseCtx);
-        this.draw();
-        this.addCommand();
-    }
-
-    private buildNewData(ctx: CanvasRenderingContext2D): void {
-        this.newImageData = this.drawingService.baseCtx.getImageData(0, 0, this.dimensions.width, this.dimensions.height);
-        for (let index = 0; index < this.newImageData.data.length; index += COLOR_DATA_SIZE) {
-            if (!this.isSameColor(index)) continue;
-            this.changePointColor(index);
+    private initializeData(): void {
+        this.oldImageData = this.drawingService.baseCtx.getImageData(0, 0, this.dimensions.width, this.dimensions.height);
+        this.imageDataToPut = new ImageData(this.dimensions.width, this.dimensions.height);
+        for (let i = 0; i < this.imageDataToPut.data.length; i++) {
+            this.imageDataToPut.data[i] = 0;
         }
     }
 
+    private nonAdjacentChange(): void {
+        this.changeImageData(this.drawingService.baseCtx);
+        this.draw();
+        this.addCommand();
+    }
+
     private adjacentChange(): void {
-        this.newImageData = this.drawingService.baseCtx.getImageData(0, 0, this.dimensions.width, this.dimensions.height);
         this.dfs();
         this.draw();
         this.addCommand();
+    }
+
+    private changeImageData(ctx: CanvasRenderingContext2D): void {
+        for (let index = 0; index < this.oldImageData.data.length; index += COLOR_DATA_SIZE) {
+            if (!this.isSameColor(index)) continue;
+            this.changePointColor(index);
+        }
     }
 
     private dfs(): void {
@@ -121,23 +130,25 @@ export class BucketService extends Tool {
     }
 
     private changePointColor(index: number): void {
-        this.newImageData.data[index + ColorData.Red] = this.newColor[ColorData.Red];
-        this.newImageData.data[index + ColorData.Green] = this.newColor[ColorData.Green];
-        this.newImageData.data[index + ColorData.Blue] = this.newColor[ColorData.Blue];
-        this.newImageData.data[index + ColorData.Alpha] = this.newColor[ColorData.Alpha];
+        this.imageDataToPut.data[index + ColorData.Red] = this.newColor[ColorData.Red];
+        this.imageDataToPut.data[index + ColorData.Green] = this.newColor[ColorData.Green];
+        this.imageDataToPut.data[index + ColorData.Blue] = this.newColor[ColorData.Blue];
+        this.imageDataToPut.data[index + ColorData.Alpha] = this.newColor[ColorData.Alpha];
     }
 
     private isSameColor(pointIndex: number): boolean {
-        const redDistance = Math.abs(this.newImageData.data[pointIndex + ColorData.Red] - this.clickedColor[ColorData.Red]);
-        const greenDistance = Math.abs(this.newImageData.data[pointIndex + ColorData.Green] - this.clickedColor[ColorData.Green]);
-        const blueDistance = Math.abs(this.newImageData.data[pointIndex + ColorData.Blue] - this.clickedColor[ColorData.Blue]);
+        const redDistance = Math.abs(this.oldImageData.data[pointIndex + ColorData.Red] - this.clickedColor[ColorData.Red]);
+        const greenDistance = Math.abs(this.oldImageData.data[pointIndex + ColorData.Green] - this.clickedColor[ColorData.Green]);
+        const blueDistance = Math.abs(this.oldImageData.data[pointIndex + ColorData.Blue] - this.clickedColor[ColorData.Blue]);
+        const alphaDistance = Math.abs(this.oldImageData.data[pointIndex + ColorData.Alpha] - this.clickedColor[ColorData.Alpha]);
         const distance = redDistance + greenDistance + blueDistance;
-        const ratio = (distance / MAX_COLOR_DISTANCE) * HUNDRED_PERCEENT;
-        return ratio <= this.tolerance;
+        const ratioColor = (distance / MAX_COLOR_DISTANCE) * HUNDRED_PERCENT;
+        const ratioAlpha = (alphaDistance / MAX_RGB) * HUNDRED_PERCENT;
+        return ratioColor <= this.tolerance && ratioAlpha <= this.tolerance;
     }
 
     draw(): void {
-        this.drawingService.previewCtx.putImageData(this.newImageData, 0, 0);
+        this.drawingService.previewCtx.putImageData(this.imageDataToPut, 0, 0);
         this.drawingService.baseCtx.drawImage(this.drawingService.previewCtx.canvas, 0, 0);
         this.drawingService.clearCanvas(this.drawingService.previewCtx);
     }
@@ -163,7 +174,7 @@ export class BucketService extends Tool {
             1,
             this.drawingService.colorService.primaryColor,
             this.drawingService.colorService.secondaryColor,
-            this.newImageData,
+            this.imageDataToPut,
         );
         const command = new BucketCommand(this, currentState, this.drawingService.colorService);
         this.drawingService.undoRedoService.addCommand(command);

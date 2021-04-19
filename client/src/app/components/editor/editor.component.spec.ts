@@ -69,12 +69,7 @@ describe('EditorComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should set to dark mode', () => {
-        component.onThemeChange(true);
-        // tslint:disable: no-string-literal
-        expect(component['isDark']).toBeTrue();
-    });
-
+    // tslint:disable: no-string-literal
     it('ngAfterViewInit should set the correct width and height from localStorage', () => {
         // tslint:disable: no-any
         const updateDimensionsSpy = spyOn<any>(canvasOperationsService, 'updateCanvasDimensions');

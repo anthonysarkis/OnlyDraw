@@ -266,6 +266,7 @@ describe('HotkeysService', () => {
                 return;
             },
         } as KeyboardEvent;
+        service['toolsService'].selectTool({} as GridService);
         service['bindShortcuts']();
         service.getTool(keyBoardEvent);
         expect(gridSpy.toggleGrid).toHaveBeenCalled();

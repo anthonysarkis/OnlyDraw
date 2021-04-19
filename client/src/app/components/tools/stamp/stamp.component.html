@@ -1,19 +1,22 @@
 <canvas
+    hidden
     #stampViewer
     id="stampViewer">
 </canvas>
 
-<h3 style="margin: 0;">Choisir l'étampe :</h3>
-<button *ngFor="let image of stampService.images; ; index as i" 
-    mat-stroked-button class="stamp-photo" 
-    [ngClass]="{ active: i === stampService.currentImageNumber}"
-    (click)="onChangeStampImage(i)"
-    >
-    <img src={{image}} width="30"/>
-</button>
+<h3>Choix de l'étampe</h3>
+<div class="stamp-list">
+    <button *ngFor="let image of stampService.images; ; index as i" 
+        mat-stroked-button class="stamp-photo" 
+        [ngClass]="{ active: i === stampService.currentImageNumber}"
+        (click)="onChangeStampImage(i)"
+        >
+        <img src={{image}} width="30"/>
+    </button>
+</div>
 
 <div id="input-stamp-field">
-    <mat-label>Angle de rotation :</mat-label>
+    <mat-label>Angle de rotation</mat-label>
     <br>
     <mat-hint>Min: 0&deg; | Max: 360&deg;</mat-hint>
     <br>
@@ -27,7 +30,7 @@
     </mat-slider>
     <span>{{ stampService.stampAngle }}&deg;</span>
     <br>
-    <mat-label>Mise à l'echelle :</mat-label>
+    <mat-label>Mise à l'echelle</mat-label>
     <br>
     <mat-hint>Min: 1 | Max: 4</mat-hint>
     <br>

@@ -1,46 +1,51 @@
-<div *ngIf="!showSpinner">
+<div class="main" *ngIf="!showSpinner">
     <h1 mat-dialog-title>Sauvegarder sur le serveur</h1>
     <mat-dialog-content class="mat-typography">
-        <div class="container">
-            <div>
-                <mat-form-field>
-                    <mat-label>Nom du dessin</mat-label>
-                    <input
-                        matInput
-                        [(ngModel)]="this.imageToSave.name"
-                        name="drawingName"
-                        #drawingName="ngModel"
-                        placeholder="Nom du dessin"
-                        required
-                        minlength="3" maxlength="10"
-                    />
-                    <mat-error [hidden]="drawingName.valid">Le nom du dessin doit avoir 3 caractères et maximum 10 caractères</mat-error>
-                </mat-form-field>
+        <div>
+            <div class="container">
+                <div>
+                    <mat-form-field>
+                        <mat-label>Nom du dessin</mat-label>
+                        <input
+                            matInput
+                            [(ngModel)]="this.imageToSave.name"
+                            name="drawingName"
+                            #drawingName="ngModel"
+                            placeholder="Nom du dessin"
+                            required
+                            minlength="3" maxlength="10"
+                        />
+                        <mat-error [hidden]="drawingName.valid">Le nom du dessin doit avoir 3 caractères et maximum 10 caractères</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="tag-input">
+                    <mat-form-field>
+                        <mat-label>Tags</mat-label>
+                        <mat-chip-list #chipList class="tag-seletion" cdkDropListOrientation="horizontal">
+                            <mat-chip *ngFor="let tag of imageToSave.tags" [selectable]="true" [removable]="true" (removed)="remove(tag)">
+                                {{ tag }}
+                                <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                            </mat-chip>
+                        </mat-chip-list>
+                        <input
+                            matInput
+                            placeholder="Nouveau tag..."
+                            [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="true"
+                            (matChipInputTokenEnd)="add($event)"
+                        />
+                        <mat-error *ngIf="chipList.errorState">Le tag doit être unique et au minimum 1 caractère et maximum 10 caractères</mat-error>
+                        <mat-hint>Min 1 caractère | Max 10 caractères | Cliquer enter, virgule ou point pour ajouter</mat-hint>
+                    </mat-form-field>
+                </div>
             </div>
-            <div class="tag-input">
-                <mat-form-field>
-                    <mat-label>Tags</mat-label>
-                    <mat-chip-list #chipList class="tag-seletion" cdkDropListOrientation="horizontal">
-                        <mat-chip *ngFor="let tag of imageToSave.tags" [selectable]="true" [removable]="true" (removed)="remove(tag)">
-                            {{ tag }}
-                            <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
-                        </mat-chip>
-                    </mat-chip-list>
-                    <input
-                        matInput
-                        placeholder="Nouveau tag..."
-                        [matChipInputFor]="chipList"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        [matChipInputAddOnBlur]="true"
-                        (matChipInputTokenEnd)="add($event)"
-                    />
-                    <mat-error *ngIf="chipList.errorState">Le tag doit être unique et au minimum 1 caractère et maximum 10 caractères</mat-error>
-                    <mat-hint>Min 1 caractère | Max 10 caractères | Cliquer enter, virgule ou point pour ajouter</mat-hint>
-                </mat-form-field>
+            <br>
+            <div class="saved-image">
+                <h3>Voici l'image qui sera sauvegardée: </h3>
+                <img [src]="this.imageSrc" />
             </div>
         </div>
-        <br>
-        <img [src]="this.imageSrc" />
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <button mat-raised-button color="primary" [disabled]="!drawingName.valid" (click)="sendImageToServer()" cdkFocusInitial>Sauvegarder</button>

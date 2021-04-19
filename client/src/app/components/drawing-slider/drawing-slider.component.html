@@ -63,7 +63,7 @@
     </div>
 
     <div class="confirm-dialog" *ngIf="carouselService.showConfirmationMsg">
-        <div class="confirm-dialog-content">
+        <div id="pop-up" class="confirm-dialog-content">
             <p>Vous avez des modifications sur le canvas non enregistrées qui seront perdues si vous décidez de continuer!</p>
             <button mat-raised-button color="primary" (click)="onLoadImage(imageIndex)">Continuer</button>
             <button mat-raised-button color="warn" (click)="this.carouselService.showConfirmationMsg = false">Annuler</button>

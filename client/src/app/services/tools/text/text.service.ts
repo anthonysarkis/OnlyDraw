@@ -18,7 +18,7 @@ export class TextService extends Tool {
     textArea: HTMLTextAreaElement;
     currentStyle: FontAttributes;
 
-    constructor(drawingService: DrawingService) {
+    constructor(public drawingService: DrawingService) {
         super(drawingService);
         this.name = ToolNames.Text;
         this.key = ToolKeys.Text;
@@ -48,6 +48,12 @@ export class TextService extends Tool {
             return;
         }
         this.activateTextBox(event);
+    }
+
+    onMouseUp(event: MouseEvent): void {
+        if ((event.target as HTMLElement).className !== 'drawing-container') return;
+        this.addCommand();
+        this.endDrawing();
     }
 
     addText(): void {

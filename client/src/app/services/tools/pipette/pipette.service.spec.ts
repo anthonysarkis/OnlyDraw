@@ -94,4 +94,24 @@ describe('PipetteService', () => {
         service.onMouseMove(mouseEvent);
         expect(spyGetMousePosition).toHaveBeenCalled();
     });
+
+    it('68', () => {
+        canvasStub.width = 2560;
+        canvasStub.height = 2650;
+        service['drawingService'].canvas = canvasStub;
+        service['dropperVisualisation'] = baseCtxStub;
+
+        mouseEvent = {
+            offsetX: 1,
+            offsetY: 2,
+            button: MouseButton.Left,
+        } as MouseEvent;
+
+        const spy = spyOn<any>(service['mathService'], 'isPointInCanvas').and.returnValue(true);
+        const spyGetMousePosition = spyOn(service, 'getPositionFromMouse').and.callThrough();
+
+        service.onMouseMove(mouseEvent);
+        expect(spyGetMousePosition).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalled();
+    });
 });

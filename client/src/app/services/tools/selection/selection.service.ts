@@ -67,6 +67,8 @@ export class SelectionService extends Tool {
     }
 
     initializeImage(image: HTMLImageElement, shape: Shape, pasted: boolean): void {
+        if (this.ctx) this.ctx.clearRect(0, 0, this.currentDimensions.width, this.currentDimensions.height);
+        this.resizeService.isShiftDown = false;
         this.resizeService.updateDimensions(this.currentDimensions.width, this.currentDimensions.height);
         this.resizeService.updateCorners(this.currentCorner, this.currentDimensions);
         this.selectedImage = image;
@@ -74,7 +76,7 @@ export class SelectionService extends Tool {
         this.setInitialProperties(this.currentCorner, this.currentDimensions);
         this.isPasted = pasted;
         if (!this.isPasted) this.fillShapeWhite();
-        this.initializeImageWithNoBorders();
+        this.initializeImageWithBorders();
         setTimeout(() => {
             this.ctx.drawImage(this.imageWithBorder, 0, 0, this.currentDimensions.width, this.currentDimensions.height);
         });
@@ -124,6 +126,7 @@ export class SelectionService extends Tool {
     }
 
     endDrawing(): void {
+        this.clearShifting();
         if (!this.isSelected) return;
         this.isSelected = false;
         this.mouseDown = false;
@@ -134,6 +137,7 @@ export class SelectionService extends Tool {
 
     drawSelection(): void {
         this.drawingService.baseCtx.save();
+        this.imageWithBorder.src = this.canvas.toDataURL();
         this.getFullCanvasImage(this.selectedImage);
         setTimeout(() => {
             this.imageService.drawOnBaseCtx(this.selectedImage, this.currentCorner, this.currentDimensions);
@@ -216,7 +220,6 @@ export class SelectionService extends Tool {
     private checkIfKeyDown(key: string): boolean {
         return this.keyBindings.has(key) && (this.keyBindings.get(key) as [boolean, Vec2])[0];
     }
-
     private checkIfAnyKeyIsPressed(): boolean {
         for (const [, [value]] of this.keyBindings) {
             if (value) return true;
@@ -260,10 +263,10 @@ export class SelectionService extends Tool {
         this.initialShapeDimensions = { width: dimensions.width, height: dimensions.height };
     }
 
-    private initializeImageWithNoBorders(): void {
+    private initializeImageWithBorders(): void {
         this.imageWithBorder.width = this.currentDimensions.width;
         this.imageWithBorder.height = this.currentDimensions.height;
-        this.imageWithBorder.src = this.imageService.getClippedImage(this.selectedImage, this.shape, this.currentDimensions);
+        if (!this.isPasted) this.imageWithBorder.src = this.imageService.getClippedImage(this.selectedImage, this.shape, this.currentDimensions);
     }
 
     drawImage(image: HTMLImageElement): void {

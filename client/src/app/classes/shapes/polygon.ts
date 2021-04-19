@@ -86,11 +86,11 @@ export class Polygon implements Shape {
         this.findSmallestSide();
         const xCenter = drawingCoords.x + this.width / 2;
         const yCenter = drawingCoords.y + this.height / 2;
-        ctx.moveTo(xCenter + this.width / 2, yCenter);
+        ctx.moveTo(xCenter, yCenter + this.height / 2);
         for (let i = 1; i <= this.numberOfSides + 1; i += 1) {
             ctx.lineTo(
-                xCenter + (this.width / 2) * Math.cos((i * 2 * Math.PI) / this.numberOfSides),
-                yCenter + (this.height / 2) * Math.sin((i * 2 * Math.PI) / this.numberOfSides),
+                xCenter + (this.width / 2) * Math.sin((i * 2 * Math.PI) / this.numberOfSides),
+                yCenter + (this.height / 2) * Math.cos((i * 2 * Math.PI) / this.numberOfSides),
             );
         }
     }

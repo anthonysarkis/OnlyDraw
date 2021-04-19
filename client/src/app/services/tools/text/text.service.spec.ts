@@ -137,6 +137,31 @@ describe('TextService', () => {
         expect(undoRedoSpy.addCommand).not.toHaveBeenCalled();
     });
 
+    it('should not add command if mouse up target is the drawing container', () => {
+        const newMouseEvent = ({
+            offsetX: 0,
+            offsetY: 0,
+            button: MouseButton.Left,
+            target: { className: 'textBox' },
+        } as unknown) as MouseEvent;
+        service.mouseDown = true;
+        service.onMouseUp(newMouseEvent);
+        expect(undoRedoSpy.addCommand).not.toHaveBeenCalled();
+    });
+
+    it('should add command if mouse up target is the drawing container', () => {
+        const newMouseEvent = ({
+            offsetX: 0,
+            offsetY: 0,
+            button: MouseButton.Left,
+            target: { className: 'drawing-container' },
+        } as unknown) as MouseEvent;
+        service.mouseDown = true;
+        service.textArea.value = 'test';
+        service.onMouseUp(newMouseEvent);
+        expect(undoRedoSpy.addCommand).toHaveBeenCalled();
+    });
+
     it('should change top corner if text align is center', () => {
         service.isTextBoxActive = true;
         service.currentStyle['text-align'] = 'center';
@@ -144,7 +169,8 @@ describe('TextService', () => {
         service.topCorner = { x: 1, y: 0 };
         service.mouseDown = true;
         service.resizeTextBox();
-        expect(service.topCorner.x).toBe(0.5);
+        const expectedSize = 0.5;
+        expect(service.topCorner.x).toBe(expectedSize);
     });
 
     it('should change top corner if text align is right', () => {

@@ -32,7 +32,6 @@ describe('LineService', () => {
     let drawHoveringLineSpy: jasmine.Spy<any>;
     let clearPathSpy: jasmine.Spy<any>;
     let getPositionFromMouseSpy: jasmine.Spy<any>;
-
     beforeEach(() => {
         drawServiceSpy = jasmine.createSpyObj('DrawingService', ['clearCanvas', 'saveCanvas']);
 
@@ -51,7 +50,6 @@ describe('LineService', () => {
                 return;
             },
         } as UndoRedoService;
-
         drawSpy = spyOn<any>(service, 'draw').and.callThrough();
         clearPathSpy = spyOn<any>(service, 'clearPath').and.callThrough();
         drawAllSegmentsSpy = spyOn<any>(service, 'drawAllSegments').and.callThrough();
@@ -76,6 +74,9 @@ describe('LineService', () => {
         expect(getPositionFromMouseSpy).toHaveBeenCalledWith(mouseEvent);
     });
     it(' onMouseDown should only call drawAllSegments and drawHoveringLine if mouse event was a left click', () => {
+        service.pathData = [{ x: 0, y: 0 }];
+        service.shiftDown = true;
+        service.shiftedPosition = { x: 0, y: 0 };
         service.onMouseDown(mouseEvent);
         expect(drawAllSegmentsSpy).toHaveBeenCalled();
         expect(drawHoveringLineSpy).toHaveBeenCalled();

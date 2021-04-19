@@ -6,7 +6,9 @@
 (input)="lineThickness=$event.value"
 (change)="onLineThicknessChange($event.value)">
 </mat-slider> <span>{{ lineThickness }} px</span>
+<br/>
 
+<mat-label>Tracé de l'ellipse</mat-label>
 <mat-button-toggle-group  (change) = "onRadioButtonChange($event.value)" aria-label="Select an option">
     <mat-button-toggle [checked] ="this.ellipseService.isBordered && !this.ellipseService.isFilled" value="0" matTooltip="Contour"><img [src]="'./assets/ellipse-contour.svg'"></mat-button-toggle>
     <mat-button-toggle [checked] ="!this.ellipseService.isBordered && this.ellipseService.isFilled" value="1" matTooltip="Rempli"><img [src]="'./assets/ellipse-filled.svg'"></mat-button-toggle>

@@ -155,11 +155,12 @@ export class CarouselService {
         setTimeout(() => {
             this.drawingService.clearCanvas(this.drawingService.baseCtx);
             this.drawingService.drawCanvas(image);
+            this.drawingService.canvasImage.src = this.drawingService.canvas.toDataURL();
             setTimeout(() => {
                 this.drawingService.undoRedoService.clearHistory();
-                this.drawingService.addCommand(this.drawingService.canvasImage);
                 this.drawingService.saveCanvas();
-            }, LOADING_DELAY);
+                this.drawingService.addCommand(this.drawingService.canvasImage);
+            }, DRAWING_DELAY);
         }, LOADING_DELAY);
     }
 

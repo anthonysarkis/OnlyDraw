@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DEFAULT_LINE_DASH, DEFAULT_LINE_THICKNESS, FILL_COLOR, SELECTION_ZONE_COLOR } from '@app/classes/constants';
+import { DEFAULT_LINE_DASH, FILL_COLOR, SELECTION_ZONE_COLOR } from '@app/classes/constants';
 import { Vec2 } from '@app/classes/vec2';
 import { Dimensions } from '@app/interfaces/dimensions';
 import { Shape } from '@app/interfaces/shape';
@@ -37,13 +37,15 @@ export class ImageHelperService {
         const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
         canvas.width = dimensions.width;
         canvas.height = dimensions.height;
+        shape.width = dimensions.width;
+        shape.height = dimensions.height;
         ctx.fillStyle = FILL_COLOR;
         shape.drawFill(ctx, { x: 0, y: 0 });
         ctx.clip();
         ctx.drawImage(image, 0, 0, dimensions.width, dimensions.height);
         image.src = canvas.toDataURL();
         ctx.setLineDash([DEFAULT_LINE_DASH, DEFAULT_LINE_DASH]);
-        ctx.lineWidth = DEFAULT_LINE_THICKNESS;
+        ctx.lineWidth = 1;
         ctx.strokeStyle = SELECTION_ZONE_COLOR;
         shape.drawBorder(ctx, { x: 0, y: 0 });
         return canvas.toDataURL();

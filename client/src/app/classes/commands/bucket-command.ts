@@ -18,7 +18,7 @@ export class BucketCommand extends ToolCommand {
     }
 
     saveState(): void {
-        this.savedState = new BucketState(1, this.colorService.primaryColor, this.colorService.secondaryColor, this.tool.newImageData);
+        this.savedState = new BucketState(1, this.colorService.primaryColor, this.colorService.secondaryColor, this.tool.imageDataToPut);
     }
 
     restoreState(): void {
@@ -35,6 +35,6 @@ export class BucketCommand extends ToolCommand {
 
     changeState(state: BucketState): void {
         super.changeState(state);
-        this.tool.newImageData = state.imageData;
+        this.tool.imageDataToPut = state.imageData;
     }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DRAWING_DELAY } from '@app/classes/constants';
 import { CanvasOperationsService } from '@app/services/canvas-operations/canvas-operations.service';
 import { DrawingService } from '@app/services/drawing/drawing.service';
 
@@ -12,7 +13,9 @@ export class ConfirmationDialogComponent {
 
     onConfirm(): void {
         this.canvasService.setDefaultDimensions();
-        this.drawingService.clearSavedCanvas();
-        this.drawingService.newCanvas();
+        setTimeout(() => {
+            this.drawingService.clearSavedCanvas();
+            this.drawingService.newCanvas();
+        }, DRAWING_DELAY);
     }
 }

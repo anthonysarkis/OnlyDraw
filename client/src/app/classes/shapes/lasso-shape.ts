@@ -4,7 +4,7 @@ import { Shape } from '@app/interfaces/shape';
 export class LassoShape implements Shape {
     constructor(public pathData: Vec2[]) {}
 
-    previewContour(ctx: CanvasRenderingContext2D, drawingCoords: Vec2): void {
+    previewContour(): void {
         return;
     }
 
@@ -24,11 +24,11 @@ export class LassoShape implements Shape {
         ctx.closePath();
     }
 
-    previewBorder(ctx: CanvasRenderingContext2D, drawingCoords: Vec2): void {
+    previewBorder(): void {
         return;
     }
 
-    previewFill(ctx: CanvasRenderingContext2D, drawingCoords: Vec2): void {
+    previewFill(): void {
         return;
     }
 

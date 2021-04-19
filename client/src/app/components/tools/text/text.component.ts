@@ -13,12 +13,13 @@ export class TextComponent {
     maxFontSize: number;
     font: string;
     fonts: string[];
+
     constructor(public textService: TextService) {
         this.fontSize = Number(this.textService.currentStyle['font-size'].replace('px', ''));
         this.minFontSize = MIN_FONT_SIZE;
         this.maxFontSize = MAX_FONT_SIZE;
         this.font = 'Georgia';
-        this.fonts = ['Georgia', 'Arial', 'Helvetica', 'Papyrus', 'Copperplate'];
+        this.fonts = ['Georgia', 'Arial', 'Comic Sans MS', 'Papyrus', 'Copperplate'];
     }
 
     onFontChange(fontState: string[]): void {
@@ -49,6 +50,7 @@ export class TextComponent {
     }
 
     onFontFamilyChange(): void {
+        if (!this.fonts.includes(this.font)) return;
         this.changeFontAttribute('font-family', this.font);
     }
 

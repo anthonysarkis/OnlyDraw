@@ -120,10 +120,10 @@ describe('BucketService', () => {
         expect(service.mouseDown).toBe(false);
     });
 
-    it('right mouse down should call buildNewData', () => {
-        const buildNewDataSpy = spyOn<any>(service, 'buildNewData').and.callThrough();
+    it('right mouse down should call changeImageData', () => {
+        const changeImageDataSpy = spyOn<any>(service, 'changeImageData').and.callThrough();
         service.onMouseDown(rightMouseEvent);
-        expect(buildNewDataSpy).toHaveBeenCalled();
+        expect(changeImageDataSpy).toHaveBeenCalled();
     });
 
     it('left mouse event should call dfs', () => {
